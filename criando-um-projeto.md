@@ -148,6 +148,9 @@ Caso queira, você pode deixar o path vazio para que não seja necessário adici
 Para ter como link inicial:
 - http://127.0.0.1:8000/inicio/
 
+Você também pode retirar o **'inicio/'** no urls.py do seu app. Para um link limpo:
+- http://127.0.0.1:8000/
+
 ## Fazendo migrações
 Faça as migrações necessárias para o projeto funcionar, visto que agora criamos um novo app. Sempre que modificarmos as configurações do nosso projeto, é importante fazermos novas migrações.
 ```bash
@@ -155,5 +158,4 @@ python manage.py makemigrations
 python manage.py migrate
 ```
 
-Agora, com tudo configurado, devemos conseguir rodar o servidor e abrir nossa página no localhost:
--	[**Página Inicial**](http://127.0.0.1:8000/inicio/)
+Agora, com tudo configurado, devemos conseguir rodar o servidor e abrir nossa página no [**localhost**](http://127.0.0.1:8000/).
