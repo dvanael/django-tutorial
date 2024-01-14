@@ -1,16 +1,19 @@
-{% load static %}
+{%extends 'base.html'%}
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+{%block title%}
     <title>Página Inicial</title>
+{%endblock%}
 
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-</head>
-<body>
-    <h1>Bem vindos ao meu Projeto Django!</h1>
-</body>
-</html>
+{%block content%}
+    <div class="container d-flex">
+        <div class="mx-auto my-3 py-5">
+            <div class="card text-center mb-3" style="width: 18rem;">
+                <div class="card-body">
+                <h5 class="card-title">Meu Projeto Django</h5>
+                <p class="card-text">Este site foi feito em Django5 e BootStrap.</p>
+                <a href="#" class="btn btn-primary">ACESSAR</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{%endblock%}
