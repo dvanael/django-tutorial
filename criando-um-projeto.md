@@ -44,8 +44,8 @@ MEDIA_ROOT=os.path.join(BASE_DIR, 'media/')
 ## Rodando nosso projeto
 Em seguida, digite no terminal os seguintes comandos:
 ``` bash
-	python manage.py migrate
-    python manage.py runserver
+python manage.py migrate
+python manage.py runserver
 ```
 
 O primeiro serve para criar um banco de dados básico, que cobriremos mais tarde. O segundo serve para rodar na máquina um servidor e pôr o nosso site localmente no ar. Caso queira testar, basta clicar no link que aparece no terminal ou acessar o [localhost](http://127.0.0.1:8000).
@@ -59,7 +59,7 @@ Para encerrar a execução do servidor, aperte **CTRL+C no terminal**.
 ## Criando um Super Usuário
 Para continuar, vamos criar um "super usuário" (ou Administrador). No terminal, digite:
 ``` bash
-	python manage.py createsuperuser
+python manage.py createsuperuser
 ```
 Pelo próprio terminal, preencha login, e-mail e senha. Você pode testar o login em:
 - http://127.0.0.1:8000/admin
@@ -71,12 +71,12 @@ O próximo passo é criar o nosso primeiro app. Os app vão nos auxiliar a separ
 
 No terminal, digite:
 ``` bash
-    python manage.py startapp <nome_do_app>
+python manage.py startapp <nome_do_app>
 ```	
 
 **IMPORTANTE**: Para este projeto de exemplo, chamarei este primeiro app de **products**
 ```bash
-    python manage.py startapp products
+python manage.py startapp products
 ```
 O Django irá criar uma nova pasta no projeto com alguns arquivos.
 
@@ -150,7 +150,6 @@ Para ter como link inicial:
 ## Configurando Aplicações
 Vamos acessar nosso arquivo **settings.py** e nele vamos procurar por **INSTALLED_APPS**, adicionando na última linha:
 ```python
-
 INSTALLED_APPS = [
     ...
 
@@ -160,8 +159,8 @@ INSTALLED_APPS = [
 
 Faça as migrações necessarias para o projeto funcionar, visto que agora criamos um novo app.
 ```bash
-    python manage.py makemigrations
-    python manage.py migrate
+python manage.py makemigrations
+python manage.py migrate
 ```
 
 Agora, com tudo configurado, devemos conseguir rodar o servidor e abrir nossa página em:
