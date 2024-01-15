@@ -63,7 +63,10 @@ Então, podemos importar o base para outras páginas e usar o mesmo **comando bl
     {%block navbar%}
         <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
             <div class="container-fluid">
-            <span class="navbar-brand mb-0 h1">PROJETO DJANGO</span>
+            <span class="navbar-brand mb-0 h1">
+                <img src="{% static 'img/django-logo.png' %}" alt="django-logo" style="width: 5%;">
+                PROJETO DJANGO
+            </span>
             </div>
         </nav>
     {%endblock%}
@@ -97,20 +100,21 @@ Agora podemos substiuir o conteúdo do nosso **index.html**.
 {%extends 'base.html'%}
 
 {%block title%}
-    <title>Página Inicial</title>
+<title>Página Inicial</title>
 {%endblock%}
 
 {%block content%}
-    <div class="container d-flex">
-        <div class="mx-auto my-3 py-5">
-            <div class="card text-center mb-3" style="width: 18rem;">
-                <div class="card-body">
-                <h5 class="card-title">Meu Projeto Django</h5>
-                <p class="card-text">Este site foi feito em Django5 e BootStrap.</p>
-                <a href="#" class="btn btn-primary">ACESSAR</a>
-                </div>
+<div class="container d-flex">
+    <div class="mx-auto my-3 py-5">
+        <div class="card text-center mb-3" style="width: 18rem;">
+            <div class="card-body">
+            <h5 class="card-title">Meu Projeto Django</h5>
+            <p class="card-text">Este site foi feito em Django5 e BootStrap.</p>
+            <a href="#" class="btn btn-primary">ACESSAR</a>
             </div>
         </div>
     </div>
+</div>
 {%endblock%}
 ```
+Assim podemos criar diferentes arquivos html sem repetir linhas de código, escrevendo apenas o necessário.
