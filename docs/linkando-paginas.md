@@ -63,6 +63,4 @@ Voltando para nosso base, vamos adicionar links na nossa navbar. Iremos utilizar
 ```
 Lembrando que **index** e **about** são os name que definimos no urls.py, eles são o que realmente importa quando chamamos um url. Portanto, os defina bem para não se confundir.
 
-Também podemos 
-
-
+Também podemos modificar os outros links do projeto, para uma navegação mais dinâmica.
