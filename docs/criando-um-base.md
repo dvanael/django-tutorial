@@ -63,9 +63,9 @@ Então, podemos importar o base para outras páginas e usar o mesmo **comando bl
     {%block navbar%}
         <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
             <div class="container-fluid">
-            <span class="navbar-brand mb-0 h1">
-                <img src="{% static 'img/django-logo.png' %}" alt="django-logo" style="width: 5%;">
-                PROJETO DJANGO
+            <span href="" class="navbar-brand w-25 fs-4">
+                <img src="{% static 'img/django-logo.png' %}" alt="django-logo" style="width: 10%;">
+                    PROJETO DJANGO
             </span>
             </div>
         </nav>
@@ -83,7 +83,7 @@ Então, podemos importar o base para outras páginas e usar o mesmo **comando bl
             <ul class="nav justify-content-center pb-3 mb-3">
                 <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Sobre</a></li>
             </ul>
-            <p class="text-center text-body-secondary">© 2024 Nokixty, Inc</p>
+            <p class="text-center text-body-secondary">© 2024 Projeto, Inc</p>
             </footer>
         </div>
     {%endblock%}
@@ -106,9 +106,9 @@ Agora podemos substiuir o conteúdo do nosso **index.html**.
 {%block content%}
 <div class="container d-flex">
     <div class="mx-auto my-3 py-5">
-        <div class="card text-center mb-3" style="width: 18rem;">
+        <div class="card text-center mb-3" style="width: 28rem;">
             <div class="card-body">
-            <h5 class="card-title">Meu Projeto Django</h5>
+            <h3 class="card-title">Meu Projeto Django</h3>
             <p class="card-text">Este site foi feito em Django5 e BootStrap.</p>
             <a href="#" class="btn btn-primary">ACESSAR</a>
             </div>
