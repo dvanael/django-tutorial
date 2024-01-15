@@ -50,10 +50,7 @@ Em **index.html** vamos adicionar duas linhas de código.
 
 Se atualizarmos nossa página inicial, devemos vê-la com uma cor de fundo diferente do branco padrão.
 
-O mesmo pode ser feito para arquivos **JavaScript**. Adicione um **scripts.js** na **pasta js** e teste você mesmo! 
-
-## Utilizando imagens
-Para utilizar imagens estáticas no seu projeto, é semelhante aos arquivos css e js.
+O mesmo pode ser feito para arquivos **JavaScript** e imagens. Para utilizar imagens estáticas no seu projeto, é semelhante aos arquivos css e js.
 
 Adicione uma imagem na sua **pasta img** e no seu index.html adicione:
 ```html
