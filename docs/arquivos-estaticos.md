@@ -20,7 +20,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static') ]
 ```
 
-Para testar, vamos criar na **pasta css** um arquivo **styles.css**. Nele vamos colocar:
+## Utilizando arquivos estáticos
+Vamos **criar na pasta css** um arquivo **styles.css**. Nele vamos colocar:
 ```css
 body{
     background-color: lightblue;
@@ -48,3 +49,21 @@ Em **index.html** vamos adicionar duas linhas de código.
 ```
 
 Se atualizarmos nossa página inicial, devemos vê-la com uma cor de fundo diferente do branco padrão.
+
+O mesmo pode ser feito para arquivos **JavaScript**. Adicione um **scripts.js** na **pasta js** e teste você mesmo! 
+
+## Utilizando imagens
+Para utilizar imagens estáticas no seu projeto, é semelhante aos arquivos css e js.
+
+Adicione uma imagem na sua **pasta img** e no seu index.html adicione:
+```html
+<body>
+    <h1>Bem vindos ao meu Projeto Django!</h1>
+    
+<!-- Utilizamos a mesma tag static para as imagens -->
+    <img src="{% static 'img/<sua-imagem>.<extensao_da_img>' %}">
+
+<!-- Por exemplo -->
+    <img src="{% static 'img/django-logo.png' %}" alt="django-logo" style="width: 5%;">
+</body>
+```
