@@ -16,7 +16,7 @@
       <form method="post" action="">
         {% csrf_token %}
         <p class="lead"> Confirme para excluir o registro definitivamente.</p>
-        <p> Deseja excluir: <strong>{{object}}</strong>?</p>
+        <p class="fs-4"> Deseja excluir: <strong>{{ object }}</strong>?</p>
 
         <div class="text-end">
           <a class="btn btn-secondary btn-lg" href="javascript:history.back()">Voltar</a>

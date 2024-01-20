@@ -34,7 +34,9 @@
         <tbody>
           {%for el in products%}
           <tr>
-            <th></th>
+            <th>
+              <a href="{% url 'product-detail' el.pk %}">{{el.id}}</a>
+            </th>
             <th>{{el.name}}</th>
             <th>{{el.description}}</th>
             <th>{{el.price}}</th>
@@ -44,6 +46,10 @@
               <a class="btn btn-secondary" href="{% url 'product-update' el.pk %}">Editar</a>
               <a class="btn btn-danger" href="{% url 'product-delete' el.pk %}">Excluir</a>
             </th>
+          </tr>
+          {%empty%}
+          <tr>
+            <th colspan="7">Não há produtos registrados.</th>
           </tr>
           {%endfor%}
         </tbody>
