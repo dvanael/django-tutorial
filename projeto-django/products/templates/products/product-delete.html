@@ -1,0 +1,22 @@
+{%extends 'base.html'%}
+
+{%block title%}
+<title>Excluir Produto</title>
+{%endblock%}
+
+{%block content%}
+<div class="col-md-12 mx-auto my-3 border w-25 rounded-4 shadow">
+  <div class="text-center h2 p-3 ">
+    Excluir Produto
+  </div>
+  <div class="col-md-12 mx-auto my-3 p-3">
+    <form method="post" action="">
+      {% csrf_token %}
+      <p> Confirme para excluir o registro definitivamente.</p>
+      <p> Deseja excluir o produto: <strong>{{ product }}</strong>?</p>
+  
+      <button class="btn btn-danger" type="submit">Excluir</button>
+    </form>
+  </div>
+</div>
+{%endblock%}
