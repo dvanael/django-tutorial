@@ -11,13 +11,13 @@
           Lista de Produtos
       </div>
   </div>
-  <div class="col-md-12 mx-auto my-1 border rounded-4 shadow">
-    <div class="text-end h2 p-3 ">
-        Lista de Produtos
-    </div>
-</div>
+ 
   <div class="col-md-12 mx-auto my-3 border rounded-4 shadow">
     <div class="p-3">
+      <div class="text-end pb-3">
+        <a class="btn btn-success" href="{% url 'product-create'%}">Cadastrar Produto</a>
+      </div>
+
       <table class="table table-responsive table-striped">
         <thead class="table-secondary">
           <tr>
@@ -39,7 +39,10 @@
             <th>{{el.price}}</th>
             <th>{{el.stock_quantity}}</th>
             <th>{{el.category.name}}</th>
-            <th></th>
+            <th>
+              <a class="btn btn-secondary" href="{% url 'product-update' el.pk %}">Editar</a>
+              <a class="btn btn-danger" href="{% url 'product-delete' el.pk %}">Excluir</a>
+            </th>
           </tr>
           {%endfor%}
         </tbody>
