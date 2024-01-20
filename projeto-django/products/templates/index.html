@@ -5,13 +5,13 @@
 {%endblock%}
 
 {%block content%}
-<div class="container d-flex">
+<div class="content container-fluid d-flex">
     <div class="mx-auto my-3 py-5 ">
         <div class="card text-center mb-3 shadow" style="width: 28rem;">
             <div class="card-body">
             <h3 class="card-title">Meu Projeto Django</h3>
             <p class="card-text">Este site foi feito em Django5 e BootStrap.</p>
-            <a href="#" class="btn btn-primary">ACESSAR</a>
+            <a href="{% url 'product-list' %}" class="btn btn-primary">ACESSAR</a>
             </div>
         </div>
     </div>

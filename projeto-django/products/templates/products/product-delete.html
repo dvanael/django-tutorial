@@ -5,18 +5,27 @@
 {%endblock%}
 
 {%block content%}
-<div class="col-md-12 mx-auto my-3 border w-25 rounded-4 shadow">
-  <div class="text-center h2 p-3 ">
-    Excluir Produto
+<div class="content container-fluid">
+<div class="container">
+  <div class="col-md-12 mx-auto my-3 border rounded-4 shadow">
+    <div class="text-center h2 pt-3 ">
+      Excluir Produto
+    </div>
+
+    <div class="col-md-12 mx-auto my-3 px-3">
+      <form method="post" action="">
+        {% csrf_token %}
+        <p class="lead"> Confirme para excluir o registro definitivamente.</p>
+        <p> Deseja excluir o produto: <strong>{{ product }}</strong>?</p>
+
+        <div class="text-end">
+          <a class="btn btn-secondary btn-lg" href="javascript:history.back()">Voltar</a>
+          <button class="btn btn-danger btn-lg" type="submit">Excluir</button>
+        </div>
+        
+      </form>
+    </div>
   </div>
-  <div class="col-md-12 mx-auto my-3 p-3">
-    <form method="post" action="">
-      {% csrf_token %}
-      <p> Confirme para excluir o registro definitivamente.</p>
-      <p> Deseja excluir o produto: <strong>{{ product }}</strong>?</p>
-  
-      <button class="btn btn-danger" type="submit">Excluir</button>
-    </form>
-  </div>
+</div>
 </div>
 {%endblock%}
