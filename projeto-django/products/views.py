@@ -25,7 +25,8 @@ def product_create(request):
             return redirect('product-list')
     else:
         form = ProductForm()
-    return render(request, 'products/product-form.html', {'form': form, 'action': 'Create'})
+    context = {'form': form, 'title': 'Cadastrar'}
+    return render(request, 'products/product-form.html', context)
 
 def product_update(request, pk):
     product = get_object_or_404(Product, pk=pk)
@@ -36,11 +37,12 @@ def product_update(request, pk):
             return redirect('product-list')
     else:
         form = ProductForm(instance=product)
-    return render(request, 'products/product-form.html', {'form': form, 'action': 'Update'})
+    context = {'form': form, 'title': 'Atualizar'}
+    return render(request, 'products/product-form.html', context)
 
 def product_delete(request, pk):
     product = get_object_or_404(Product, pk=pk)
     if request.method == 'POST':
         product.delete()
         return redirect('product-list')
-    return render(request, 'products/product-delete.html', {'product': product})
+    return render(request, 'products/product-delete.html', {'object': product})
