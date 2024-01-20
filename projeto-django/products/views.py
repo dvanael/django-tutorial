@@ -11,21 +11,21 @@ def about(request):
 
 def product_list(request):
     products = Product.objects.all()
-    return render(request, 'products/product_list.html', {'products': products})
+    return render(request, 'products/product-list.html', {'products': products})
 
 def product_detail(request, pk):
     product = get_object_or_404(Product, pk=pk)
-    return render(request, 'products/product_detail.html', {'product': product})
+    return render(request, 'products/product-detail.html', {'product': product})
 
 def product_create(request):
     if request.method == 'POST':
         form = ProductForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('product_list')
+            return redirect('product-list')
     else:
         form = ProductForm()
-    return render(request, 'products/product_form.html', {'form': form, 'action': 'Create'})
+    return render(request, 'products/product-form.html', {'form': form, 'action': 'Create'})
 
 def product_update(request, pk):
     product = get_object_or_404(Product, pk=pk)
@@ -33,14 +33,14 @@ def product_update(request, pk):
         form = ProductForm(request.POST, instance=product)
         if form.is_valid():
             form.save()
-            return redirect('product_list')
+            return redirect('product-list')
     else:
         form = ProductForm(instance=product)
-    return render(request, 'products/product_form.html', {'form': form, 'action': 'Update'})
+    return render(request, 'products/product-form.html', {'form': form, 'action': 'Update'})
 
 def product_delete(request, pk):
     product = get_object_or_404(Product, pk=pk)
     if request.method == 'POST':
         product.delete()
-        return redirect('product_list')
-    return render(request, 'products/product_confirm_delete.html', {'product': product})
+        return redirect('product-list')
+    return render(request, 'products/product-delete.html', {'product': product})
