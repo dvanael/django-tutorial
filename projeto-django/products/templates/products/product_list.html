@@ -1,0 +1,43 @@
+{%extends 'base.html'%}
+
+{%block title%}
+<title>Produtos</title>
+{%endblock%}
+
+{%block content%}
+<div class="container">
+  <div class="col-md-12 mx-auto my-3 border rounded-4 shadow">
+      <div class="text-center h2 p-3 ">
+          Lista de Produtos
+      </div>
+  </div>
+  <div class="col-md-12 mx-auto my-3 border rounded-4 shadow">
+    <div class="p-3">
+      <table class="table table-responsive table-striped">
+        <thead class="table-secondary">
+          <tr>
+            <th></th>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Preço (R$)</th>
+            <th>Qnt. Estoque</th>
+            <th>Categoria</th>
+            <th>Opções</th>
+          </tr>
+        </thead>
+        <tbody>
+          {%for el in products%}
+          <th></th>
+          <th>{{el.name}}</th>
+          <th>{{el.description}}</th>
+          <th>{{el.price}}</th>
+          <th>{{el.stock_quantity}}</th>
+          <th>{{el.category.name}}</th>
+          <th></th>
+          {%endfor%}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{%endblock%}
