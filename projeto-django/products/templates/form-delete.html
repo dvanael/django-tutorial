@@ -7,18 +7,16 @@
 {%block content%}
 <div class="content container-fluid">
 <div class="container">
-  <div class="col-md-12 mx-auto my-3 border rounded-4 shadow">
-    <div class="text-center h2 pt-3 ">
-      {{title}}
-    </div>
+  <div class="col-md-6 mx-auto my-3 border rounded-4 shadow">
+    <div class="text-center h2 pt-3">{{title}}</div>
 
-    <div class="col-md-12 mx-auto my-3 px-3">
+    <div class="text-center my-3 px-3">
       <form method="post" action="">
         {% csrf_token %}
         <p class="lead"> Confirme para excluir o registro definitivamente.</p>
         <p class="fs-4"> Deseja excluir: <strong>{{ object }}</strong>?</p>
 
-        <div class="text-end">
+        <div>
           <a class="btn btn-secondary btn-lg" href="javascript:history.back()">Voltar</a>
           <button class="btn btn-danger btn-lg" type="submit">Excluir</button>
         </div>
