@@ -35,7 +35,7 @@
           {%for el in products%}
           <tr>
             <th>
-              <a href="{% url 'product-detail' el.pk %}">{{el.id}}</a>
+              <a href="{% url 'product-detail' el.pk %}">{{el.pk}}</a>
             </th>
             <th>{{el.name}}</th>
             <th>{{el.description}}</th>
