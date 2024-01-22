@@ -1,3 +1,7 @@
+:root{
+    --main-color: #3db96a;
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -6,4 +10,12 @@ body {
 
 body .content{
     flex: 1 1 0;
+}
+
+.navbar {
+    background-color: var(--main-color);
+}
+
+.footer {
+    background-color: var(--main-color);
 }

@@ -6,7 +6,6 @@
 {%endblock%}
 
 {%block content%}
-<div class="content container-fluid">
 <div class="container">
   <div class="col-md-12 mx-auto my-3 border rounded-4 shadow">
       <div class="h2 p-3 ms-3">{{product.name}}</div>
@@ -17,7 +16,7 @@
         <img src="{% static 'img/placeholder-img.png'%}" alt="image" style="width: 20rem;">
       </div>
     </div>
-
+    
     <div class="col-md-5 mx-auto my-3 border rounded-4 shadow">
       <div class="h3 pt-3 ps-3">Descrição</div>
       <div class="mx-3 fs-4">{{product.description}}</div>
@@ -27,6 +26,5 @@
     </div>
 
   </div>
-</div>
 </div>
 {%endblock%}

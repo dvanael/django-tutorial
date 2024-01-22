@@ -1,10 +1,11 @@
-# INSTALAÇÃO INICIAL
+# INSTALAÇÃO INICIAL 
 Primeiro instale o [Python](https://www.python.org/downloads/). Deve-se marcar a opção de adicioná-lo ao PATH durante a instalação para que ele possa ser acessado de qualquer pasta do computador.
 
 ## Instale o VS Code
 Instale o [VSCode](https://code.visualstudio.com/download). Algumas extensões úteis que podem ser baixadas no próprio VSCode:
 - Portuguese
 - Python
+- Django
 - Bootstrap
 - jQuery code snippets
 
@@ -26,11 +27,24 @@ python3 -m venv venv
 - No Linux:
     - ` source venv\Scripts\activate `
 
-
 Para **desativar** o ambiente virtual, digite:
 ``` bash
 deactivate
 ```
 **ATENÇÃO**: nunca reutilize seu venv, crie um em cada máquina que usar.
+## Utilizando o requirements.txt
+Em nosso projeto, iremos fazer várias instalações ao decorrrer de sua programação. Essas instalações se tornaram dependências para rodar nosso projeto. O próprio Django sendo uma delas.
 
-# Siga para o próximo documento -> [**Criando um Projeto**](https://github.com/nokixty/criando-projeto-django/blob/main/criando-um-projeto.md)
+Vamos fazer um arquivo que irá registrar essas dependecias, facilitando a instalação das mesmas em outros ambientes de desenvolvimento ou produção.
+
+Execute esse comando no desenvolvimento para registrar novas instalações. No terminal, digite :
+```bash
+pip freeze > requirements.txt
+```
+
+Para instalar as dependências em outro ambiente. Execute:
+```bash
+pip install -r requirements.txt
+```
+## Siga para o próximo documento -> [Criando um Projeto](/docs/criando-um-projeto.md)
+## [Acessar Sumário](../README.md#sumário)
