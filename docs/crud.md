@@ -1,4 +1,16 @@
 # Criando um CRUD
+**CRUD** é um acrônimo para **C**reate (criar), **R**ead (ler), **U**pdate (atualizar) e **D**elete (excluir). É um conjunto de operações básicas para gerenciar informações em um sistema. 
+
+- **Create (Criar):** Adiciona novos dados ao sistema.
+  
+- **Read (Ler):** Recupera ou visualiza dados existentes no sistema.
+
+- **Update (Atualizar):** Modifica ou atualiza dados já existentes no sistema.
+
+- **Delete (Excluir):** Remove dados do sistema.
+
+O CRUD é uma estrutura fundamental em sistemas de banco de dados e aplicativos para realizar operações básicas de manipulação de dados.
+
 Vamos começar a criar nosso primeiro CRUD em Python no Django, grande parte do processos feitos no backend serão escritos no **viwes.py** e a parte interativa com o usuário será feita nos **templates**.
 
 Começaremos criando nossa listagem, o READ do CRUD. Vamos criar uma pasta, **dentro de templates**, para guardar nossos HTMLs relacionados ao nosso CRUD. 
@@ -7,19 +19,21 @@ Começaremos criando nossa listagem, o READ do CRUD. Vamos criar uma pasta, **de
     └── products/
 ```
 ## List
-Vamos programar uma função para renderizar no template todos os objetos do nosso banco de dados, assim podemos fazer nossa listagem no frontend.
-### views.py
+Vamos programar uma função para renderizar no template todos os objetos do nosso banco de dados, assim podemos fazer nossa listagem no frontend. Lembrando de importar a classe model dos objetos que iremos utilizar.
+
+**views.py**
 ```py
+import .models from Products
 ...
 def product_list(request):
     products = Product.objects.all()
-    return render(request, 'products/product-list.html', {'products': products})
+    return render(request, 'products/product-list.html', {'object_list': products})
 ```
 A função **Product.objects.all()** busca todos os objetos do model que criamos anteriormente, 
-utilizamos **{'products': products}** no render para que nossa lista de objetos seja renderizada no template.
+utilizamos **{'object_list': products}** no render para que nossa lista de objetos seja renderizada no template.
 
 Vamos criar o HTML **product-list.html** na nova pasta que criamos em templastes.
-### product-list.html
+**product-list.html**
 ```html
 {%extends 'base.html'%}
 
@@ -28,7 +42,6 @@ Vamos criar o HTML **product-list.html** na nova pasta que criamos em templastes
 {%endblock%}
 
 {%block content%}
-<div class="content container-fluid">
 <div class="container">
   <div class="col-md-12 mx-auto my-3 border rounded-4 shadow">
       <div class="text-center h2 p-3 ">
@@ -52,14 +65,14 @@ Vamos criar o HTML **product-list.html** na nova pasta que criamos em templastes
           </tr>
         </thead>
         <tbody>
-          {%for el in products%}
+          {%for object in object_list%}
           <tr>
-            <th></th>
-            <th>{{el.name}}</th>
-            <th>{{el.description}}</th>
-            <th>{{el.price}}</th>
-            <th>{{el.stock_quantity}}</th>
-            <th>{{el.category.name}}</th>
+            <th><!-- reservado --></th>
+            <th>{{ object.name }}</th>
+            <th>{{ object.description }}</th>
+            <th>{{ object.price }}</th>
+            <th>{{ object.stock_quantity }}</th>
+            <th>{{ object.category.name }}</th>
             <th>
           <!-- BOTÕES DE OPÇÕES -->
             </th>
@@ -76,10 +89,9 @@ Vamos criar o HTML **product-list.html** na nova pasta que criamos em templastes
     </div>
   </div>
 </div>
-</div>
 {%endblock%}
 ```
-Aqui utilizamos um *for*, **{% for el in products %}**, para cada *elemento* (el) em *produtos* (products), nossa lista de objetos que será renderizada. Nesse *for*, usamos **{{ el.atributo }}** para cada atributo que criamos anteriormento no nosso **models.py**. 
+Aqui utilizamos um *for*, **{%  object in object_list %}**, para cada objeto na nossa lista de objetos, que será renderizada. Nesse *for*, usamos **{{ object.atributo }}** para cada atributo que criamos anteriormento no nosso **models.py**. 
 
 **{% empty %}**, é uma função que é ativada quando não há objetos na nossa lista, se vazia (*if empty*).
 
@@ -87,7 +99,7 @@ Também, usamos classes do Bootstrap para deixar nosso template mais bonito.
 
 Agora vamos definir a url da nossa nova função list. Adicione em urls.py:
 
-### urls.py
+**urls.py**
 ```py
 from .views import *
 
@@ -96,15 +108,18 @@ urlpatterns = [
     path('produtos/', product_list, name='product-list'),
 ]
 ```
+---
 Para acessar mais facilmente, adicione um novo link na sua navbar.
-### base.html
+
+**base.html**
 ```html
 ...
 <li class="nav-item">
     <a class="nav-link active" href="{% url 'product-list' %}">Produtos</a></li>
 ...
 ```
-Coloque o servidor para rodar e teste a listagem. Se você criou objetos no [**admin do Django**](http://localhost:8000/admin/), agora você poderá vê-los em **http://localhost:8000/produtos/**.
+---
+Coloque o servidor para rodar e teste a listagem. Se você criou objetos no [**admin do Django**](http://localhost:8000/admin/), agora você poderá vê-los em [localhost:8000/produtos/](http://localhost:8000/produtos/).
 
 ## Create
 Para não precisarmos entrar no admin do Django para fazer novos cadastros, criaremos um formulário em nosso frontend.
@@ -115,7 +130,8 @@ Primeiramente, é necessário criar um arquivo **forms.py** na pasta do nosso ap
     └── forms.py
 ```
 No forms.py, vamos escrever o seguinte código do nosso fórmulario, definindo qual model iremos usar e quais campos estarão nesse formúlario.
-### forms.py
+
+**forms.py**
 ```py
 from django import forms
 from .models import Product
@@ -125,9 +141,10 @@ class ProductForm(forms.ModelForm):
         model = Product
         fields = ['name', 'description', 'price', 'stock_quantity', 'category']
 ```
+---
 Utilizaremos essa classe form em nossa função create. Em views.py, vamos escrever:
 
-### views.py
+**views.py**
 ```py
 from django.shortcuts import render, redirect #importamos a função redirect do django
 from .forms import ProductForm #importamos nossa classe form
@@ -154,7 +171,7 @@ Criamos um contexto para nosso render para definir como usaremos o form e title 
 ```
 Esse form.html está fora da pasta products porque poderemos utlizá-lo para diferentes funções e models. Mas se preferir, pode criar um **product-form.html** na **pasta products** mas lembre defini-lo na função render.
 
-### form.html
+**form.html**
 ```html
 {%extends 'base.html'%}
 
@@ -163,14 +180,13 @@ Esse form.html está fora da pasta products porque poderemos utlizá-lo para dif
 {%endblock%}
 
 {%block content%}
-<div class="content container-fluid">
 <div class="container">
-  <div class="col-md-12 mx-auto my-3 border rounded-4 shadow">
+  <div class="col-md-6 mx-auto my-3 border rounded-4 shadow">
     <div class="text-center h2 px-3 pt-3">
       {{title}}
     </div>
     
-    <div class="col-md-12 mx-auto p-3">
+    <div class="p-3">
       <p class="lead">Preencha as informações necessárias.</p>
       <form method="post" action="">
         {% csrf_token %}
@@ -186,7 +202,6 @@ Esse form.html está fora da pasta products porque poderemos utlizá-lo para dif
 
   </div>
 </div>  
-</div>
 {%endblock%}
 ```
 Aqui, usamos o **{{ title }}** para alterar o título de acordo com a função que está sendo executada no template. 
@@ -194,16 +209,17 @@ Aqui, usamos o **{{ title }}** para alterar o título de acordo com a função q
 **{% csrf_token %}** é uma medida de segurança. O mais importante, o **{{ form.as_p }}** é nosso form definido na função create é renderizado como um parágrafo na nossa página.
 
 Agora nos resta, configurar nossa url. Também, adicionaremos um botão no topo da tabela, linkando nosso formulário.
-### urls.py
+
+**urls.py**
 ```py
-    path('produtos/cadastrar/', product_create, name='product-create'),
+path('produtos/cadastrar/', product_create, name='product-create'),
 ```
-### product-list.html
+**product-list.html**
 ```html
 ...
 <!-- TOPO DA TABELA -->
       <div class="text-end pb-3">
-        <a class="btn btn-success" href="{% url 'product-create'%}">Cadastrar Produto</a>
+        <a class="btn btn-success" href="{% url 'product-create' %}">Cadastrar Produto</a>
       </div>
 ...
 ```
@@ -212,7 +228,8 @@ Rode o servidor localhost e faça o teste, adicione novos objetos a tabela.
 Agora que podemos ler e adicionar novos objetos a tabela, iremos criar uma função update, para atualizar os objetos já existentes. 
 
 Fizemos o forms.py e o form.html anteriormente, então essa etapa será mais fácil. Basta compreender a lógica.
-### views.py 
+
+**views.py**
 ```py
 from django.shortcuts import render, redirect, get_object_or_404 #importamos a função get or error do Django
 
@@ -228,42 +245,44 @@ def product_update(request, pk):
     context = {'form': form, 'title': 'Atualizar Produto'}
     return render(request, 'form.html', context)
 ```
-Por se tratar de uma atualização de um objeto, primerio buscamos o objeto em específico pela sua chave prímária (*pk*) juntamente da requisição, para assim, enviarmos seus dados para o formulário (*instance=product*). E seguimos o mesmo processo da função create.
+Por se tratar de uma atualização de um objeto, primerio buscamos o objeto em específico pela sua chave *prímária (*pk*)* juntamente da requisição, para assim, enviarmos seus dados para o formulário (*instance=product*). E seguimos o mesmo processo da função create.
 
 Adicionamos a url para essa função.
-### urls.py
+
+**urls.py**
 ```py
-    path('produtos/<int:pk>/atualizar/', product_update, name='product-update'),
+path('produtos/<int:pk>/atualizar/', product_update, name='product-update'),
 ```
 Perceba que o url recebe um **valor int igual a pk**, esse valor é chave primária do objeto que será recebido pela função update.
 
 Para facilitar a busca pela chave primária do objeto, vamos adiconá-la no canto da tabela. Também, vamos adicionar um botão de opção, esse será para atualizar o objeto.
-### product-list.html
+
+**product-list.html**
 ```html
 ...
-{%for el in products%}
+{%for object in object_list%}
   <tr>
-    <th>{{el.pk}}</th> <!-- Adicionamos a pk -->
-    <th>{{el.name}}</th> 
-    <th>{{el.description}}</th>
-    <th>{{el.price}}</th>
-    <th>{{el.stock_quantity}}</th>
-    <th>{{el.category.name}}</th>
+    <th>{{ object.pk }}</th> <!-- Adicionamos a pk -->
+    <th>{{ object.name }}</th>
+    <th>{{ object.description }}</th>
+    <th>{{ object.price }}</th>
+    <th>{{ object.stock_quantity }}</th>
+    <th>{{ object.category.name }}</th>
     <th>
   <!-- Adicionamos um botão para atualização --> 
-      <a class="btn btn-secondary" href="{% url 'product-update' el.pk %}">Editar</a>
+      <a class="btn btn-secondary" href="{% url 'product-update' object.pk %}">Editar</a>
     </th>
   </tr>
 ...
 ```
-Perceba que ao usar a função url do Django, enviamos também o **el.pk** (chave primária do objeto), para que as informções desse objeto sejam recebidas pela função update e colocadas no formulário.
+Perceba que ao usar a função url do Django, enviamos também o **object.pk** (chave primária do objeto), para que as informções desse objeto sejam recebidas pela função update e colocadas no formulário.
 
 Agora, rode o servidor e tente atulizar algum objeto da sua tabela.
 
 ## Delete
 Vamos escrever um função delete, para terminar nosso CRUD. Semelhante ao update, o delete também precisa receber uma chave primária para saber qual objeto está sendo deletedo.
 
-### views.py
+**views.py**
 ```py
 def product_delete(request, pk):
     product = get_object_or_404(Product, pk=pk)
@@ -285,7 +304,7 @@ Vamos criar ele na mesma pasta que está o **form.html**, a pasta **templates**,
 ```
 Se preferir, pode criar um **product-delete.html** na pasta **products**.
 
-### form-delete.html
+**form-delete.html**
 ```html
 {%extends 'base.html'%}
 
@@ -294,7 +313,6 @@ Se preferir, pode criar um **product-delete.html** na pasta **products**.
 {%endblock%}
 
 {%block content%}
-<div class="content container-fluid">
 <div class="container">
   <div class="col-md-6 mx-auto my-3 border rounded-4 shadow">
     <div class="text-center h2 pt-3">{{title}}</div>
@@ -314,26 +332,30 @@ Se preferir, pode criar um **product-delete.html** na pasta **products**.
     </div>
   </div>
 </div>
-</div>
 {%endblock%}
 ```
-
+---
 Por fim, definimos a sua url e adicionamos um novo botão de opção na tabela, o botão de deletar.
-### urls.py
+
+**urls.py**
 ```py
   path('produtos/<int:pk>/deletar/', product_delete, name='product-delete'),
 ```
-### product-list.html
+**product-list.html**
 ```html
 ...
     <th>
-      <a class="btn btn-secondary" href="{% url 'product-update' el.pk %}">Editar</a>
+      <a class="btn btn-secondary" href="{% url 'product-update' object.pk %}">Editar</a>
 
   <!-- Adicionamos um botão para deletar -->
-      <a class="btn btn-danger" href="{% url 'product-delete' el.pk %}">Excluir</a>
+      <a class="btn btn-danger" href="{% url 'product-delete' object.pk %}">Excluir</a>
    </th>
 ...
 ```
 Faça o teste e tente deletar um objeto da sua tabela.
 
 Com isso, temos um CRUD completo em nosso frontend. Podemos fazer o mesmo para o outro model que criamos antes, para que não seja necessário acessar o admin do Django para adicionar novos objetos.
+
+## ! Documento Extra -> [Crispy Forms](doc)
+## Siga para o próximo documento -> [Usuário e Autenticação](/docs/autenticacao.md)
+## [Acessar Sumário](../README.md#sumário)

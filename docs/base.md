@@ -8,8 +8,9 @@ Primeiro, vamos acessar o site do [BootStrap](https://getbootstrap.com/docs/5.3/
 Você também pode [baixar](https://getbootstrap.com/docs/5.3/getting-started/download/) os arquivos do BootStrap e colocá-los na pasta static. 
 
 
-Vamos criar na pasta template um arquivo **base.html**.
+Vamos criar na pasta template um arquivo base.html.
 
+**base.html**
 ```html
 {%load static%}
 
@@ -41,7 +42,7 @@ Por exemplo:
 ```
 Então, podemos importar o base para outras páginas e usar o mesmo **comando block** do Django para editar nossos arquivos html. 
 
-### base.html
+**base.html**
 ```html
 {%load static%}
 
@@ -59,43 +60,47 @@ Então, podemos importar o base para outras páginas e usar o mesmo **comando bl
     
 </head>
 <body>
+
 <!-- BLOCO DA NAVBAR -->
-    {%block navbar%}
-        <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-            <div class="container-fluid">
-            <span href="" class="navbar-brand w-25 fs-4">
-                <img src="{% static 'img/django-logo.png' %}" alt="django-logo" style="width: 10%;">
-                    PROJETO DJANGO
-            </span>
-            </div>
-        </nav>
-    {%endblock%}
+{%block navbar%}
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+    <span class="navbar-brand w-25 fs-4">
+        <img src="{% static 'img/django-logo.png' %}" alt="django-logo" style="width: 10%;">
+            PROJETO DJANGO
+    </span>
+    <!-- espaço para links -->
+    </div>
+</nav>
+{%endblock%}
 
 <!-- BLOCO DO CONTEUDO -->
-    {%block content%}
-        <h1> BASE DO MEU PROJETO </h1>
-    {%endblock%}
+<div class="content container-fluid">
+    {%block content%} {%endblock%}
+</div>
 
 <!-- BLOCO DO FOOTER -->
-    {%block footer%}
-        <div class="container-fluid bg-primary fixed-bottom" data-bs-theme="dark">
-            <footer class="py-3 my-4">
-            <ul class="nav justify-content-center pb-3 mb-3">
-                <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Sobre</a></li>
-            </ul>
-            <p class="text-center text-body-secondary">© 2024 Projeto, Inc</p>
-            </footer>
-        </div>
-    {%endblock%}
+{%block footer%}
+<div class="footer container-fluid">
+    <footer class="pt-2">
+        <ul class="nav justify-content-center pb-1 mb-3">
+            <li class="nav-item">
+                <a href="#" class="nav-link px-2 text-body-secondary">Sobre</a>
+            </li>
+        </ul>
+        <p class="text-center text-body-secondary">© 2024 Projeto Django</p>
+    </footer>
+</div>
+{%endblock%}
 
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>
 ```
+---
+Agora podemos substiuir o conteúdo do nosso index.html.
 
-Agora podemos substiuir o conteúdo do nosso **index.html**.
-
-### index.html
+**index.html**
 ```html
 {%extends 'base.html'%}
 
@@ -118,3 +123,33 @@ Agora podemos substiuir o conteúdo do nosso **index.html**.
 {%endblock%}
 ```
 Assim podemos criar diferentes arquivos html sem repetir linhas de código, escrevendo apenas o necessário.
+
+Por questões de estilo, vamos alterar nosso styles.css.
+
+**styles.css**
+```css
+:root{
+    --main-color: #3db96a;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;    
+}
+
+body .content{
+    flex: 1 1 0;
+}
+
+.navbar {
+    background-color: var(--main-color);
+}
+
+.footer {
+    background-color: var(--main-color);
+}
+```
+
+## Siga para o próximo documento -> [Linkando Páginas](/docs/linkando-paginas.md)
+## [Acessar Sumário](../README.md#sumário)

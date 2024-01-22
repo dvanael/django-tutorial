@@ -10,7 +10,7 @@ templates/
 └── about.hmtl
 ```
 Nesse HTML, vamos extender nosso **base.html** e adicionar conteúdo.
-### about.html
+**about.html**
 ```html
 {%extends 'base.html'%}
 
@@ -20,7 +20,7 @@ Nesse HTML, vamos extender nosso **base.html** e adicionar conteúdo.
 
 {%block content%}
 <div class="container d-flex">
-    <div class="mx-auto my-3 py-5 border rounded-4">
+    <div class="mx-auto my-3 py-5 border rounded-4 shadow">
         <div class="text-center h3 my-3 p-3">
             Este projeto foi idealizado para ajudar outros alunos!
         </div>
@@ -28,16 +28,18 @@ Nesse HTML, vamos extender nosso **base.html** e adicionar conteúdo.
 </div>
 {%endblock%}
 ```
-
+---
 Agora é necessário **criar outra view**, assim como fizemos com o index. Logo abaixo de **def index()**, vamos adicionar a nova função.
-### views.py
+
+**views.py**
 ```py
 def about(request):
     return render(request, 'about.html')
 ```
+---
 E adicionamos um **novo path** no **urls.py** do app.
 
-### urls.py
+**urls.py**
 ```py
 from .views import *
 
@@ -46,12 +48,19 @@ urlpatterns = [
     path('sobre/', about, name='about'),
 ]
 ```
-Voltando para nosso base, vamos adicionar links na nossa navbar. Iremos utilizar a **tag url** do Django para buscar a url que queremos. Dentro da **div da navbar** vamos adicionar.
 
-### base.html
+## Criando Links
+Voltando para nosso base, vamos adicionar links na nossa navbar. Iremos utilizar a **tag url** do Django para buscar a url que queremos. Dentro da **div da navbar** vamos adicionar no *espaço para links*.
+
+**base.html**
 ```html
 ...
-    <div class="navbar-collapse">
+<!-- ESPAÇO PARA LINKS -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-drop"  aria-controls="navbar-drop" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbar-drop">
         <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link active" href="{% url 'index' %}">Início</a>
@@ -64,3 +73,6 @@ Voltando para nosso base, vamos adicionar links na nossa navbar. Iremos utilizar
 Lembrando que **index** e **about** são os name que definimos no urls.py, eles são o que realmente importa quando chamamos um url. Portanto, os defina bem para não se confundir.
 
 Também podemos modificar os outros links do projeto, para uma navegação mais dinâmica.
+
+## Siga para o próximo documento -> [Models](/docs/models.md)
+## [Acessar Sumário](../README.md#sumário)

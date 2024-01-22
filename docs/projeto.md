@@ -159,3 +159,6 @@ python manage.py migrate
 ```
 
 Agora, com tudo configurado, devemos conseguir rodar o servidor e abrir nossa página no [**localhost**](http://127.0.0.1:8000/).
+
+## Siga para o próximo documento -> [Arquivos Estáticos](/docs/arquivos-estaticos.md)
+## [Acessar Sumário](../README.md#sumário)
