@@ -15,6 +15,9 @@ Dentro da pasta *core*, procure pelo arquivo **settings.py**, adicione `import o
 
 Próximo ao fim do arquivo, edite as seguintes linhas para definir o **idioma para português** e o **fuso horário para SP**.
 ``` python
+import os
+...
+
 LANGUAGE_CODE = 'pt-br';
 
 TIME_ZONE = 'America/Sao_Paulo';
