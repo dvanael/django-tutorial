@@ -46,5 +46,5 @@ Para instalar as dependências em outro ambiente. Execute:
 ```bash
 pip install -r requirements.txt
 ```
-## Siga para o próximo documento -> [Criando um Projeto](/docs/criando-um-projeto.md)
+## Siga para o próximo documento -> [Criando um Projeto](/docs/projeto.md)
 ## [Acessar Sumário](../README.md#sumário)
