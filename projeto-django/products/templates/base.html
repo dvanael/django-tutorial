@@ -14,8 +14,9 @@
     
 </head>
 <body>
-<!-- BLOCO DA NAVBAR -->
+
 {%block navbar%}
+<!-- BLOCO DA NAVBAR -->
 <nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
         <span class="navbar-brand w-25 fs-4">
@@ -35,19 +36,24 @@
                     <a class="nav-link active" href="{% url 'product-list' %}">Produtos</a></li>
                 <li class="nav-item">
                     <a class="nav-link active" href="{% url 'about' %}">Sobre</a></li>
+                 <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'logout' %}">Logout</a></li>
             </ul>
         </div>
+        
+        <form action="{% url "logout" %}" method="post">
+            {% csrf_token %}
+            <button class="nav-link active" type="submit">Logout</button>
+        </form>
     </div>
 </nav>
 {%endblock%}
 
 <!-- BLOCO DO CONTEUDO -->
-<div class="content container-fluid">
-    {%block content%} {%endblock%}
-</div>
+{%block content%} {%endblock%}
 
-<!-- BLOCO DO FOOTER -->
 {%block footer%}
+<!-- BLOCO DO FOOTER -->
 <div class="footer container-fluid">
     <footer class="pt-2">
     <ul class="nav justify-content-center pb-1 mb-3">

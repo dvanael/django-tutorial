@@ -75,9 +75,7 @@ Então, podemos importar o base para outras páginas e usar o mesmo **comando bl
 {%endblock%}
 
 <!-- BLOCO DO CONTEUDO -->
-<div class="content container-fluid">
-    {%block content%} {%endblock%}
-</div>
+{%block content%} {%endblock%}
 
 <!-- BLOCO DO FOOTER -->
 {%block footer%}
@@ -109,6 +107,7 @@ Agora podemos substiuir o conteúdo do nosso index.html.
 {%endblock%}
 
 {%block content%}
+<div class="content conatainer-fluid">
 <div class="container d-flex">
     <div class="mx-auto my-3 py-5">
         <div class="card text-center mb-3" style="width: 28rem;">
@@ -119,6 +118,7 @@ Agora podemos substiuir o conteúdo do nosso index.html.
             </div>
         </div>
     </div>
+</div>
 </div>
 {%endblock%}
 ```
