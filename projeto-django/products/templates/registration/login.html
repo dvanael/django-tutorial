@@ -13,7 +13,10 @@
     <div class="shadow rounded-4 border p-5 w-50 bg-white">
 
 {% if request.user.is_authenticated %}
-    <p>Your account doesn't have access to this page. To proceed, please login with an account that has access.</p>
+    <h3>Ação não permitida!</h3>
+    <p class="lead text-bold">
+      Houve algum problema para processar a ação desejada ou você não tem permissão.</p>
+    <a href="{% url 'index' %}" class="btn btn-secondary"> Voltar Ao Início</a>
 
 {% else %}
     <h3 >LOGIN</h3>
