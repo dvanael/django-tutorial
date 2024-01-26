@@ -10,6 +10,7 @@ templates/
 └── about.hmtl
 ```
 Nesse HTML, vamos extender nosso **base.html** e adicionar conteúdo.
+
 **about.html**
 ```html
 {%extends 'base.html'%}
@@ -19,12 +20,14 @@ Nesse HTML, vamos extender nosso **base.html** e adicionar conteúdo.
 {%endblock%}
 
 {%block content%}
+<div class="content conatainer-fluid">
 <div class="container d-flex">
     <div class="mx-auto my-3 py-5 border rounded-4 shadow">
         <div class="text-center h3 my-3 p-3">
             Este projeto foi idealizado para ajudar outros alunos!
         </div>
     </div>
+</div>
 </div>
 {%endblock%}
 ```

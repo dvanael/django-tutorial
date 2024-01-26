@@ -42,6 +42,7 @@ Vamos criar o HTML **product-list.html** na nova pasta que criamos em templastes
 {%endblock%}
 
 {%block content%}
+<div class="content conatainer-fluid">
 <div class="container">
   <div class="col-md-12 mx-auto my-3 border rounded-4 shadow">
       <div class="text-center h2 p-3 ">
@@ -88,6 +89,7 @@ Vamos criar o HTML **product-list.html** na nova pasta que criamos em templastes
       
     </div>
   </div>
+</div>
 </div>
 {%endblock%}
 ```
@@ -180,6 +182,7 @@ Esse form.html está fora da pasta products porque poderemos utlizá-lo para dif
 {%endblock%}
 
 {%block content%}
+<div class="content conatainer-fluid">
 <div class="container">
   <div class="col-md-6 mx-auto my-3 border rounded-4 shadow">
     <div class="text-center h2 px-3 pt-3">
@@ -202,6 +205,7 @@ Esse form.html está fora da pasta products porque poderemos utlizá-lo para dif
 
   </div>
 </div>  
+</div>
 {%endblock%}
 ```
 Aqui, usamos o **{{ title }}** para alterar o título de acordo com a função que está sendo executada no template. 
@@ -313,6 +317,7 @@ Se preferir, pode criar um **product-delete.html** na pasta **products**.
 {%endblock%}
 
 {%block content%}
+<div class="content conatainer-fluid">
 <div class="container">
   <div class="col-md-6 mx-auto my-3 border rounded-4 shadow">
     <div class="text-center h2 pt-3">{{title}}</div>
@@ -331,6 +336,7 @@ Se preferir, pode criar um **product-delete.html** na pasta **products**.
       </form>
     </div>
   </div>
+</div>
 </div>
 {%endblock%}
 ```
