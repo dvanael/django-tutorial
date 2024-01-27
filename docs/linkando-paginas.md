@@ -64,7 +64,7 @@ Voltando para nosso base, vamos adicionar links na nossa navbar. Iremos utilizar
     </button>
     
     <div class="collapse navbar-collapse" id="navbar-drop">
-        <ul class="navbar-nav">
+        <ul class="navbar-nav me-auto">
             <li class="nav-item">
                 <a class="nav-link active" href="{% url 'index' %}">Início</a>
             <li class="nav-item">
