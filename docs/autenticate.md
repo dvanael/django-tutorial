@@ -135,4 +135,42 @@ def product_list(request):
 ```
 **@group_required('group_name')** irá verificar se o grupo do usuário que está acessando a página pertence ao grupo definido na função. 
 
-Lembrando que é necessário adicionar esse grupo no [admin do Django](http://localhost:8000/admin). Basta criar um grupo com nome
+Lembrando que é necessário adicionar esse grupo no [admin do Django](http://localhost:8000/admin). Basta criar um grupo (não é necessário as permissões do admin) e utilizar o nome desse grupo no decorator.
+
+## Acesso Negado
+Caso queira, você pode adicionar uma mensagem para o usuário quando ele tentar visitar uma página que não possui acesso. Para isso, vamos trocar o que há no bloco conteúdo no arquivo login.html por:
+
+**login.html**
+```html
+...
+{% block content %}
+<div class="content login container-fluid">
+<div class="container py-5 my-5">
+  <div class="d-flex justify-content-center align-items-center h-50">
+    <div class="shadow rounded-4 border p-5 w-50 bg-white">
+
+{% if request.user.is_authenticated %}
+    <h3>Ação não permitida!</h3>
+    <p class="lead text-bold">
+      Houve algum problema para processar a ação desejada ou você não tem permissão.</p>
+    <a href="{% url 'index' %}" class="btn btn-secondary"> Voltar Ao Início</a>
+
+{% else %}
+    <h3>LOGIN</h3>
+    <form action="" method="post">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <div class="d-flex justify-content-center">
+        <button class="btn btn-success w-100" type="submit">Entrar</button>
+      </div>
+    </form>
+{% endif %}
+    </div>
+  </div>
+</div>
+</div>
+{% endblock content %}
+```
+Usando **{% if request.user.is_authenticated %}**, o Django saberá se o usuário está logado e se possui acesso para aquela página. Então exibimos uma mensagem de erro e um link para o index.
+
+Dessa forma, utilizamos a mesma página para dois propósitos diferentes.
