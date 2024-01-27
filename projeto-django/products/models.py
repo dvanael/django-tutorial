@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
@@ -13,6 +14,7 @@ class Product(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Preço")
     stock_quantity = models.PositiveIntegerField(default=0, verbose_name="Quantidade de Estoque")
     category = models.ForeignKey(Category, on_delete=models.PROTECT, verbose_name="Categoria")
+    user = models.ForeignKey(User, on_delete=models.PROTECT, verbose_name="Usuário")
 
     def __str__(self):
         return self.name
