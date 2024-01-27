@@ -194,3 +194,27 @@ class Product(models.Model):
     user = models.ForeignKey(User, on_delete=models.PROTECT, verbose_name="Usuário")
 
 ```
+Como as classes foram alteradas, precisamos atualizar o banco de dados. Para isso, vamos digitar no terminal:
+```bash
+python manage.py makemigrations
+```
+Caso já haja algum cadastro no banco de dados, será necessário definir um padrão "default" para os objetos já cadastrados. 
+
+Para isso, vamos digitar 1 (primeira opção) e vamos definir como padrão 1 (chave primária do primeiro usuário criado). Em seguida, vamos por no terminal:
+```bash
+python manage.py migrate 
+```
+Agora precisamos configurar como o usuário será associado ao objeto automaticamente.
+
+Para cada **função create** que for necessária, vamos adicionar:
+
+**views.py**
+```py
+def product_create(request):
+  ...
+        if form.is_valid():
+            form.instance.user = request.user # vamos associar o request.user ao objeto
+            form.save()
+            return redirect('product-list')
+            ...
+```
