@@ -137,6 +137,8 @@ def product_list(request):
 
 Lembrando que é necessário adicionar esse grupo no [admin do Django](http://localhost:8000/admin). Basta criar um grupo (não é necessário as permissões do admin) e utilizar o nome desse grupo no decorator.
 
+Crie um grupo `admin` e um `user`.
+
 ## Acesso Negado
 Caso queira, você pode adicionar uma mensagem para o usuário quando ele tentar visitar uma página que não possui acesso. Para isso, vamos trocar o que há no bloco conteúdo no arquivo login.html por:
 
@@ -174,3 +176,21 @@ Caso queira, você pode adicionar uma mensagem para o usuário quando ele tentar
 Usando **{% if request.user.is_authenticated %}**, o Django saberá se o usuário está logado e se possui acesso para aquela página. Então exibimos uma mensagem de erro e um link para o index.
 
 Dessa forma, utilizamos a mesma página para dois propósitos diferentes.
+
+## Filtrando informações
+Agora, apenas usuários cadastrados conseguem visualizar os dados sensíveis do site. Contudo, qualquer usuário consegue visualizar os dados de todos os usuários. 
+
+Para alterar isso, precisamos criar uma relação entre os usuários e os objetos criados por ele, de forma que depois possamos filtrar os objetos para que o usuário possa apenas ver/editar/excluir os objetos que ele próprio criou. 
+
+Vamos começar criando a **relação usuário-objeto**. Para cada classe que for necessário, adicionar como atributo:
+
+**models.py**
+```py
+from django.contrib.auth.models import User # importe o usuário padrão do Django
+
+# adicione o atributo user a classe
+class Product(models.Model):
+    ...
+    user = models.ForeignKey(User, on_delete=models.PROTECT, verbose_name="Usuário")
+
+```

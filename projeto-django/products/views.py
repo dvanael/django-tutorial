@@ -20,7 +20,7 @@ def about(request):
 
 @group_required('user','admin')
 def product_list(request):
-    products = Product.objects.all()
+    products = Product.objects.filter(user = request.user)
     return render(request, 'products/product-list.html', {'products': products})
 
 @group_required('user','admin')
@@ -33,6 +33,7 @@ def product_create(request):
     if request.method == 'POST':
         form = ProductForm(request.POST)
         if form.is_valid():
+            form.instance.user = request.user
             form.save()
             return redirect('product-list')
     else:
