@@ -29,26 +29,28 @@
         </button>
         
         <div class="collapse navbar-collapse" id="navbar-drop">
-            <ul class="navbar-nav">
+            <ul class="navbar-nav me-auto">
                 <li class="nav-item">
                     <a class="nav-link active" href="{% url 'index' %}">Início</a></li>
                 <li class="nav-item">
                     <a class="nav-link active" href="{% url 'product-list' %}">Produtos</a></li>
                 <li class="nav-item">
                     <a class="nav-link active" href="{% url 'about' %}">Sobre</a></li>
+            </ul>
 
+            <div class="d-flex align-items-center me-3">
                 {% if request.user.is_authenticated %}
+                <div class="nav-item">
+                    <div class="nav-link me-3">{{ request.user }}</div></div>
+                    
                 <form action="{% url 'logout' %}" method="post">
                     {% csrf_token %}
-                    <button class="nav-link active" type="submit">Logout</button>
-                </form>
+                    <button class="btn btn-secondary" type="submit">Logout</button></form>
+
                 {% else %}
-                <li class="nav-item">
-                    <a class="nav-link active" href="{% url 'login' %}">Login</a></li>
+                <div class="nav-item">
+                    <a class="btn btn-primary" href="{% url 'login' %}">Login</a></div>
                 {% endif %}
-            </ul>
-            <div class="me-3">
-                {{ request.user }}
             </div>
         </div>
         

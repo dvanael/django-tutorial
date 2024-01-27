@@ -71,24 +71,68 @@ Agora, o login do usuário está pronto e funcional.
 
 Vamos adicionar a opção de logout. Criaremos um pequeno form post para redirecionar o usuário de volta para a página de login. Então, vamos adicionar esse form na nossa navbar.
 ```html
-<ul class="navbar-nav">
+<ul class="navbar-nav me-auto">
   ...
- 
+</ul> 
+<div class="d-flex align-items-center me-3">
     {% if request.user.is_authenticated %}
+    <div class="nav-item">
+        <div class="nav-link me-3">{{ request.user }}</div></div>
+        
     <form action="{% url 'logout' %}" method="post">
         {% csrf_token %}
-        <button class="nav-link active" type="submit">Logout</button>
-    </form>
-    {% else %}
-    <li class="nav-item">
-        <a class="nav-link active" href="{% url 'login' %}">Login</a></li>
-    {% endif %}
-</ul>
+        <button class="btn btn-secondary" type="submit">Logout</button></form>
 
-<div class="me-3">
-    {{ request.user }}
+    {% else %}
+    <div class="nav-item">
+        <a class="btn btn-primary" href="{% url 'login' %}">Login</a></div>
+    {% endif %}
 </div>
 ```
 Utilizamos um form post, porque a **LogoutView** do Django pede um requisição post para o logout.
 
-E também, o django para poder usar um IF e nele definimos dois links: Caso o usuário esteja autenticado, irá ver um link para logout. Caso contrário, irá ver um link para login.
+Usamos um **if request.user.is_authenticated** (se o usuário está autenticado), ele renderiza "Logout", se não é renderizado o link de Login.
+
+E também, usamos o **request.user** para mostrar o usuário que está logado.
+
+## Autenticação
+No momento, o usuário consegue logar e deslogar no sistema, mas isso não implica em nada, pois mesmo deslogado o usuário consegue ver todas as páginas. Vamos mudar isso! 
+
+Em views.py, vamos importar:
+
+**views.py**
+```py
+from django.contrib.auth.decorators import login_required
+# vamos adicionar esse decorator em cada view que for necessário o login
+# por exemplos
+
+@login_required
+def product_list(request):
+    products = Product.objects.all()
+    return render(request, 'products/product-list.html', {'products': products})
+
+```
+**@login_required** faz que seja necessário o **login do usuário** para acessar a página.
+
+Lembrando que é necessário realizar isso para todas as views necessárias. Agora, caso algum usuário não logado tente acessar essa página, ele será redirecionado à página de login.
+
+Caso você queira limitar uma página a um grupo de usuários (Ex.: professores, funcionários, administrador, etc..), você pode adicionar a seguinte função as suas views.
+
+**views.py**
+```py
+from django.contrib.auth.decorators import user_passes_test
+
+def group_required(group_name):
+    def in_group(user):
+        if user.groups.filter(name=group_name).exists():
+            return True
+        return False
+    return user_passes_test(in_group, login_url='/login/')
+# adicione essas função no lugar da @login_required
+
+@group_required('<seu_grupo>')
+def product_list(request):
+```
+**@group_required('group_name')** irá verificar se o grupo do usuário que está acessando a página pertence ao grupo definido na função. 
+
+Lembrando que é necessário adicionar esse grupo no [admin do Django](http://localhost:8000/admin). Basta criar um grupo com nome
