@@ -1,17 +1,17 @@
 from django.shortcuts import render, redirect, get_object_or_404
 
 from django.contrib.auth.decorators import user_passes_test
-from django.contrib.auth.forms import UserCreationForm
+# from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import Group 
 from django.contrib.auth import authenticate, login
 
 from .models import Product
-from .forms import ProductForm
+from .forms import ProductForm, UserForm
 
 # Create your views here.
 def register(request):
     if request.method == 'POST':
-        form = UserCreationForm(request.POST)
+        form = UserForm(request.POST)
         if form.is_valid():
             user = form.save()
             group = get_object_or_404(Group, name='user')
@@ -23,7 +23,7 @@ def register(request):
                 login(request, user)
                 return redirect('index')
     else:
-        form = UserCreationForm()
+        form = UserForm()
     return render(request, 'registration/register.html', {'form': form})
 
 def group_required(*group_name):
