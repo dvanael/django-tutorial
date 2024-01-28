@@ -70,6 +70,8 @@ O que estamos fazendo aqui é informar que a página que será usada para o Logi
 Agora, o login do usuário está pronto e funcional.
 
 Vamos adicionar a opção de logout. Criaremos um pequeno form post para redirecionar o usuário de volta para a página de login. Então, vamos adicionar esse form na nossa navbar.
+
+**base.html**
 ```html
 <ul class="navbar-nav me-auto">
   ...
@@ -248,7 +250,6 @@ Para isso, vamos em views.py e vamos digitar:
 **views.py**
 ```py
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import Group 
 from django.contrib.auth import authenticate, login
 ...
 
@@ -257,9 +258,6 @@ def register(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            # adicionamos o usuário ao grupo 'user'
-            group = get_object_or_404(Group, name='user')
-            user.groups.add(group)
             # autenticamos o usuário e o redirecionamos para o index
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
@@ -271,3 +269,113 @@ def register(request):
         form = UserCreationForm()
     return render(request, 'registration/register.html', {'form': form})
 ```
+
+Criamos uma função para o cadastro do usuário, ela também autentica o usuário e o redireciona para o nosso index.
+
+Por enquanto, estamos usando o **UserCreationForm** padrão do Django. Vamos mudar isso e alterar esse formulário. Em **forms.py**, vamos adicionar:
+
+**forms.py**
+```py
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+...
+
+class UserForm(UserCreationForm):
+    email = forms.EmailField(max_length=100)
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']
+```
+---
+Voltamos ao views e alteramos para o **nosso formulário**.
+
+**views.py**
+```py
+# from django.contrib.auth.forms import UserCreationForm
+from .forms import ProductForm, UserForm
+...
+# alteramos para nosso form
+if request.method == 'POST':
+        form = UserForm(request.POST)
+        ...
+
+    else:
+        form = UserForm()
+```
+---
+Com todos a **função register** criada, nos resta criar um novo template e adicionar uma nova url.
+
+Criamos o `registration/register.html`.
+
+**register.html**
+```html
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %} <title>Crie uma Conta</title> {% endblock title %}
+
+{% block navbar %}{% endblock navbar %}
+{% block footer %}{% endblock footer %}
+
+{% block content %}
+<div class="content login container-fluid">
+<div class="container py-5 my-5">
+  <div class="d-flex justify-content-center align-items-center h-50">
+    <div class="shadow rounded-4 border p-5 w-50 bg-white">
+    <h3>CADASTRO</h3>
+    <form action="" method="post">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <div class="d-flex justify-content-center">
+        <button class="btn btn-success w-100" type="submit">Criar Conta</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+</div>
+{% endblock content %}
+```
+---
+**urls.py**
+```py
+path('cadastro/', register, name='register'),
+```
+Agora resta colocar um link no menu do navbar para a página de registro e está pronto. 
+
+**EXTRA** Para que não seja possível utilizar o mesmo e-mail para diferentes cadastros, podemos utilizar a função clean para esta validação extra.
+
+Após o **class Meta** do UserForm, vamos adicionar:
+
+**forms.py**
+```py
+from django.core.exceptions import ValidationError
+...
+    # podemos utilizar a função clean para esta validação extra
+    def clean_email(self):
+        e = self.cleaned_data['email']
+        if User.objects.filter(email=e).exists():
+            raise ValidationError(f"O email {e} já está em uso.")
+        return e
+```
+Podemos utilizar essa função (**clean_<nome_do_atributo>**) para realizar qualquer validação extra, além de retornar (raise) mensagens de erro para o usuário.
+
+## Adicionando Usuários em Grupos
+Em alguns casos, onde há poucos grupos e/ou grupos previamente definidos, essa parte é feita manualmente pelo administrador pela página admin. Contudo, caso se deseje adicionar um usuário a um grupo automaticamente durante o registro, é possível.
+
+**views.py**
+```py
+# importamos o models de Grupo padrão do Django
+from django.contrib.auth.models import Group 
+...
+
+def register(request):
+    ...
+        if form.is_valid():
+            user = form.save()
+            # adicionamos o grupo que o usuário será adicionado
+            group = get_object_or_404(Group, name='user')
+            user.groups.add(group)
+            ...
+```
+Usamos o model de Grupo do Django, se o formulário for válido, buscamos o grupo pelo nome e adicionamos o usuário salvo ao grupo.
