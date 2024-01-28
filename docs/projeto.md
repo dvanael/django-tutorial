@@ -1,11 +1,11 @@
 # Criando um projeto
 Com o ambiente virtual ativado, instale o [Django](https://www.djangoproject.com). 
-``` bash
+```bash
 pip install Django==5.0.1
 ```
 Dentro da pasta que você criou, crie um projeto. Digite no terminal:
 
-``` bash
+```bash
 django-admin startproject core .
 ```
 Isso irá criar um arquivo chamado **manage.py** e uma pasta chamada **core**, esta será nossa pasta de configuração.
@@ -14,7 +14,9 @@ Isso irá criar um arquivo chamado **manage.py** e uma pasta chamada **core**, e
 Dentro da pasta *core*, procure pelo arquivo **settings.py**, adicione `import os` no ínicio deste arquivo.
 
 Próximo ao fim do arquivo, edite as seguintes linhas para definir o **idioma para português** e o **fuso horário para SP**.
-``` python
+
+**settings.py**
+```py
 import os
 ...
 
@@ -25,7 +27,7 @@ TIME_ZONE = 'America/Sao_Paulo';
 
 ## Rodando nosso projeto
 Em seguida, digite no terminal os seguintes comandos:
-``` bash
+```bash
 python manage.py migrate
 python manage.py runserver
 ```
@@ -40,7 +42,7 @@ Para encerrar a execução do servidor, aperte **CTRL+C no terminal**.
 
 ## Criando um Super Usuário
 Para continuar, vamos criar um "super usuário" (ou Administrador). No terminal, digite:
-``` bash
+```bash
 python manage.py createsuperuser
 ```
 Pelo próprio terminal, preencha login, e-mail e senha. Você pode testar o login em:
@@ -52,7 +54,7 @@ Por esse painel admin é possível interagir diretamente com o banco de dados. A
 O próximo passo é criar o nosso primeiro app. Os app vão nos auxiliar a separar as funcionalidades da aplicação e manter tudo mais organizado. Começaremos criando um app para as páginas HTML que criaremos para o site. 
 
 No terminal, digite:
-``` bash
+```bash
 python manage.py startapp <nome_do_app>
 ```	
 
@@ -62,8 +64,10 @@ python manage.py startapp products
 ```
 O Django irá criar uma nova pasta no projeto com alguns arquivos.
 
-Agoras precisamos configurar nosso app no projeto. Vamos acessar nosso arquivo **settings.py** e nele vamos procurar por **INSTALLED_APPS**, adicionando na última linha:
-```python
+Agoras precisamos configurar nosso app no projeto. Vamos acessar nosso arquivo settings.py e nele vamos procurar por **INSTALLED_APPS**, adicionando na última linha:
+
+**settings.py**
+```py
 INSTALLED_APPS = [
     ...
 
@@ -81,7 +85,9 @@ Vamos criar a primeira página da aplicação que será a página inicial do pro
 E, dentro da pasta, um arquivo chamado **index.html**, que será a nossa página inicial.
 
 Apenas como teste, vamos pôr no index.html algo bem simples:
-``` html
+
+**index.html**
+```html
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -97,7 +103,9 @@ Apenas como teste, vamos pôr no index.html algo bem simples:
 </html>
 ```
 
-Agora vamos configurar nossa **pasta de templates** no projeto. Para isso, vamos ao **settings.py** e procurar por **TEMPLATES**.
+Agora vamos configurar nossa **pasta de templates** no projeto. Para isso, vamos ao settings.py e procurar por **TEMPLATES**.
+
+**settings.py**
 ```py
 TEMPLATES = [
     {
@@ -111,15 +119,19 @@ O que estamos fazendo aqui é adicionando aos templates do projeto a pasta templ
 
 ## Criando uma view
 Com a página criada, vamos em **views.py**, vamos adicionar uma função **index** nesse arquivo. A função **render** importada no topo do arquivo é responsável por renderizar templates.
-``` python
+
+**views.py**
+```py
 from django.shortcuts import render 
 
 def index(request):
     return render(request, 'index.html')
 ```
 
-Além da página, precisamos configurar seu endereço. Para isso, dentro da pasta do app, vamos criar mais um arquivo chamado **urls.py** e nele vamos adicionar:
-``` python
+Além da página, precisamos configurar seu endereço. Para isso, **dentro da pasta do app**, vamos criar mais um arquivo chamado **urls.py** e nele vamos adicionar:
+
+**<nome_do_app>/urls.py**
+```py
 from django.urls import path
 from .views import index
 
@@ -130,7 +142,9 @@ urlpatterns = [
 Basicamente estamos informando que o endereço (path) 'início/' vai ser "representado" pela função **index** (que é a nossa página index.html). 
 
 Agora, vamos no outro arquivo do projeto chamado **urls.py**, na **pasta core**, e vamos editar para:
-```python
+
+**core/urls.py**
+```py
 from django.contrib import admin
 from django.urls import path, include #para incluir os urls do nosso app
 
