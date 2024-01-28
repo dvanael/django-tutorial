@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %} <title>Crie uma Conta</title> {% endblock title %}
+
+{% block navbar %}{% endblock navbar %}
+{% block footer %}{% endblock footer %}
+
+{% block content %}
+<div class="content login container-fluid">
+<div class="container py-5 my-5">
+  <div class="d-flex justify-content-center align-items-center h-50">
+    <div class="shadow rounded-4 border p-5 w-50 bg-white">
+    <h3>CADASTRO</h3>
+    <form action="" method="post">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <div class="d-flex justify-content-center">
+        <button class="btn btn-success w-100" type="submit">Criar Conta</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+</div>
+{% endblock content %}

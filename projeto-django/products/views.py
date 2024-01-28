@@ -1,9 +1,31 @@
 from django.shortcuts import render, redirect, get_object_or_404
+
 from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import Group 
+from django.contrib.auth import authenticate, login
+
 from .models import Product
 from .forms import ProductForm
 
 # Create your views here.
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            group = get_object_or_404(Group, name='user')
+            user.groups.add(group)
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('index')
+    else:
+        form = UserCreationForm()
+    return render(request, 'registration/register.html', {'form': form})
+
 def group_required(*group_name):
     def in_group(user):
         if user.groups.filter(name__in=group_name).exists():

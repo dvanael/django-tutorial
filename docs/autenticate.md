@@ -239,3 +239,35 @@ def product_delete(request, pk):
     ...
 ```
 No **get or error**, indetificamos que o usuário do objeto deve ser igual o usuário da requisição (**user=request.user**).
+
+## Cadastro de Usuário
+O usuário já está funcional, com login, logout e relação entre ele e os seus objetos. Falta agora disponibilizar ao usuário uma tela de cadastros, já que no momento só é possível criar um novo usuário pela página do admin. 
+
+Para isso, vamos em views.py e vamos digitar:
+
+**views.py**
+```py
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import Group 
+from django.contrib.auth import authenticate, login
+...
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            # adicionamos o usuário ao grupo 'user'
+            group = get_object_or_404(Group, name='user')
+            user.groups.add(group)
+            # autenticamos o usuário e o redirecionamos para o index
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('index')
+    else:
+        form = UserCreationForm()
+    return render(request, 'registration/register.html', {'form': form})
+```
