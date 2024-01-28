@@ -177,7 +177,7 @@ Usando **{% if request.user.is_authenticated %}**, o Django saberá se o usuári
 
 Dessa forma, utilizamos a mesma página para dois propósitos diferentes.
 
-## Filtrando informações
+## Filtrando por Usuário
 Agora, apenas usuários cadastrados conseguem visualizar os dados sensíveis do site. Contudo, qualquer usuário consegue visualizar os dados de todos os usuários. 
 
 Para alterar isso, precisamos criar uma relação entre os usuários e os objetos criados por ele, de forma que depois possamos filtrar os objetos para que o usuário possa apenas ver/editar/excluir os objetos que ele próprio criou. 
@@ -218,3 +218,24 @@ def product_create(request):
             return redirect('product-list')
             ...
 ```
+Aqui dizemos que usuário da requisição é igual ao atributo *user* do objeto enviado no  formulário (**form.instance.user = request.user**). Assim, automaticamente, quando um usuário criar um objeto, este será associado a ele.
+
+Agora precisamos filtrar os objetos na listagem, para que o usuário veja apenas os objetos que ele criou. Para isso, vamos modificar as **funções list**:
+
+**views.py**
+```py
+def product_list(request):
+    products = Product.objects.filter(user = request.user)
+    return render(request, 'products/product-list.html', {'products': products})
+```
+Usamos **filter(user=request.user)** para que os objetos renderizados sejam aqueles associados ao usuário da requisição.
+
+Agora resta configurar as **funções update** e **delete** para que apenas o usuário que criou o objeto possa editar/excluí-lo. Para isso, vamos adicionar no get:
+
+**views.py**
+```py
+def product_delete(request, pk):
+    product = get_object_or_404(Product, pk=pk, user=request.user)
+    ...
+```
+No **get or error**, indetificamos que o usuário do objeto deve ser igual o usuário da requisição (**user=request.user**).

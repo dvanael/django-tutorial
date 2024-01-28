@@ -14,13 +14,12 @@ def group_required(*group_name):
 def index(request):
     return render(request, 'index.html')
 
-@group_required('user','admin')
 def about(request):
     return render(request, 'about.html')
 
 @group_required('user','admin')
 def product_list(request):
-    products = Product.objects.filter(user = request.user)
+    products = Product.objects.filter(user=request.user)
     return render(request, 'products/product-list.html', {'products': products})
 
 @group_required('user','admin')
@@ -43,7 +42,7 @@ def product_create(request):
 
 @group_required('user','admin')
 def product_update(request, pk):
-    product = get_object_or_404(Product, pk=pk)
+    product = get_object_or_404(Product, pk=pk, user=request.user)
     if request.method == 'POST':
         form = ProductForm(request.POST, instance=product)
         if form.is_valid():
@@ -56,7 +55,7 @@ def product_update(request, pk):
 
 @group_required('user','admin')
 def product_delete(request, pk):
-    product = get_object_or_404(Product, pk=pk)
+    product = get_object_or_404(Product, pk=pk, user=request.user)
     if request.method == 'POST':
         product.delete()
         return redirect('product-list')
