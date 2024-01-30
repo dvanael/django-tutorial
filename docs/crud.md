@@ -363,5 +363,5 @@ Faça o teste e tente deletar um objeto da sua tabela.
 Com isso, temos um CRUD completo em nosso frontend. Podemos fazer o mesmo para o outro model que criamos antes, para que não seja necessário acessar o admin do Django para adicionar novos objetos.
 
 ## ! Documento Extra -> [Crispy Forms](doc)
-## Siga para o próximo documento -> [Usuário e Autenticação](/docs/autenticacao.md)
+## Siga para o próximo documento -> [Usuário e Autenticação](/docs/autenticate.md)
 ## [Acessar Sumário](../README.md#sumário)
