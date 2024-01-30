@@ -20,9 +20,13 @@ Próximo ao fim do arquivo, edite as seguintes linhas para definir o **idioma pa
 import os
 ...
 
-LANGUAGE_CODE = 'pt-br';
+LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'America/Sao_Paulo';
+TIME_ZONE = 'America/Sao_Paulo'
+
+USE_I18N = True
+USE_L10N = True 
+USE_TZ = True
 ```
 
 ## Rodando nosso projeto

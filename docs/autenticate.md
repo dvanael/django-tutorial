@@ -63,7 +63,7 @@ Está quase pronto, mas se você acessar a página e logar, verá que dará erro
 ```py
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'index'
-LOGOUT_REDIRECT_URL = 'login'
+LOGOUT_REDIRECT_URL = 'login' #ou 'index'
 ```
 O que estamos fazendo aqui é informar que a página que será usada para o Login é a url **'login'**, ao efetuar um login o usuário será redirecionado (redirect) para a página **'início'** e ao efetuar um logout será redirecionado para a página 'login'. 
 
@@ -360,7 +360,7 @@ from django.core.exceptions import ValidationError
 ```
 Podemos utilizar essa função (**clean_<nome_do_atributo>**) para realizar qualquer validação extra, além de retornar (raise) mensagens de erro para o usuário.
 
-## Adicionando Usuários em Grupos
+## Grupos de Usuários
 Em alguns casos, onde há poucos grupos e/ou grupos previamente definidos, essa parte é feita manualmente pelo administrador pela página admin. Contudo, caso se deseje adicionar um usuário a um grupo automaticamente durante o registro, é possível.
 
 **views.py**
@@ -379,3 +379,12 @@ def register(request):
             ...
 ```
 Usamos o model de Grupo do Django, se o formulário for válido, buscamos o grupo pelo nome e adicionamos o usuário salvo ao grupo.
+
+No admin do Django, vamos **adicionar um grupo** chamado `admin`. Usaremos ele para dar acesso geral para usuários administradores. Lembre de adicionar um  usuário no grupo admin, para que possamos usá-lo para testes. De preferência, use seu Super Usuário.
+
+Com um usuário admin, vamos modificar nossas views.
+
+**views.py**
+```py
+
+```

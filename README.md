@@ -34,5 +34,12 @@ Um repositório criado por um aluno com o propósito de ajudar outros alunos. Aq
   - [Create](docs/crud.md#create)
   - [Update](docs/crud.md#update)
   - [Delete](docs/crud.md#delete)
+- [**AUTENTICACÃO**](docs/autenticate.md)
+  - [Login e Logout](docs/autenticate.md#login-e-logout)
+  - [Autenticação](docs/autenticate.md#autenticac3a7c3a3o-1)
+  - [Acesso Negado](docs/autenticate.md#acesso-negado)
+  - [Filtro por Usuário](docs/autenticate.md#filtrando-por-usuário)
+  - [Cadastro de Usuário](docs/autenticate.md#cadastro-de-usuário)
+  - [Grupos de Usuários](docs/autenticate.md#adicionando-usuários-em-grupos)
 - [**CRISPY FORMS**](docs/crispy-forms.md)
 ---
