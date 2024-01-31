@@ -124,7 +124,7 @@ Caso você queira limitar uma página a um grupo de usuários (Ex.: professores,
 ```py
 from django.contrib.auth.decorators import user_passes_test
 
-def group_required(group_name):
+def group_required(*group_name):
     def in_group(user):
         if user.groups.filter(name=group_name).exists():
             return True
@@ -136,6 +136,9 @@ def group_required(group_name):
 def product_list(request):
 ```
 **@group_required('group_name')** irá verificar se o grupo do usuário que está acessando a página pertence ao grupo definido na função. 
+
+Com diferentes grupos de usuários, podemos dar acesso restrito para um certo grupo. Por exemplo, **apenas administradores** podem acessar **uma view em específico**. Isso sendo  essencial para privar certos dados de usuários comuns.
+
 
 Lembrando que é necessário adicionar esse grupo no [admin do Django](http://localhost:8000/admin). Basta criar um grupo (não é necessário as permissões do admin) e utilizar o nome desse grupo no decorator.
 
@@ -382,9 +385,38 @@ Usamos o model de Grupo do Django, se o formulário for válido, buscamos o grup
 
 No admin do Django, vamos **adicionar um grupo** chamado `admin`. Usaremos ele para dar acesso geral para usuários administradores. Lembre de adicionar um  usuário no grupo admin, para que possamos usá-lo para testes. De preferência, use seu Super Usuário.
 
-Com um usuário admin, vamos modificar nossas views.
+Vamos modificar nossas views.
 
 **views.py**
 ```py
-
+# List View 
+def product_list(request):
+  # Filtramos para os usuários admin verem todos os objetos
+    if request.user.groups.filter(name='admin').exists():
+        products = Product.objects.all()
+  # Outros usuários vêem apenas seus objetos
+    else:
+        products = Product.objects.filter(user=request.user)
+    return render(request, 'products/product-list.html', {'products': products})
 ```
+
+Assim, os usuários do **grupo admin** pode ter acesso a todos os objetos do sistema, similar ao admin do Django. Porém, o usuário admin **não pode editar** ou **excluir** objetos de outros usuários. Vamos mudar isso.
+
+**views.py**
+```py
+# Update View
+def product_update(request, pk):
+    if request.user.groups.filter(name='admin').exists():
+        product = get_object_or_404(Product, pk=pk)
+    else:
+        product = get_object_or_404(Product, pk=pk, user=request.user)
+    
+    ...
+    return render(request, 'form.html', context)
+```
+Aqui permitimos aos usuários admin editar qualquer objeto no sistema. É possível fazer o mesmo na nossa **delete view**.
+
+---
+Com isso, damos menos acesso para usuários avulsos do sistema e definimos diferentes tipos de usuários.
+
+## [Acessar Sumário](../README.md#sumário)
