@@ -19,8 +19,8 @@ Agora precisamos indicar ao nosso projeto onde a pasta está localizada. Para is
 **settings.py**
 ```py
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static') ]
-STATIC_ROOT=os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT= os.path.join(BASE_DIR, 'static')
+STATIC_DIR = [os.path.join(BASE_DIR, 'static')]
 ```
 
 ## Utilizando arquivos estáticos
