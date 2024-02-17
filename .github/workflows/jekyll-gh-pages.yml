@@ -32,7 +32,8 @@ jobs:
         uses: actions/configure-pages@v4
       - name: Use raw Liquid tags
         run: |
-          find . -name "*.md" -print0 | xargs -0 sed -i 's/{%/{% comment %}{% endcomment %}/g'
+          find . -name "*.md" -print0 | xargs -0 sed -i "s/{{%/#{%/g"
+          find . -name "*.md" -print0 | xargs -0 sed -i "s/{{/#{/g"
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
