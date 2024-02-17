@@ -30,19 +30,15 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v4
-      - name: Replace Django tags in Markdown files
+      - name: Obscure Django tags in Markdown files
         run: |
-          find . -name "*.md" -print0 | xargs -0 sed -i "s/{{%___Django_TAG___%}/___Django_TAG___/g"
-          find . -name "*.md" -print0 | xargs -0 sed -i "s/{{___Django_TAG___/___Django_TAG___/g"
+          find . -name "*.md" -print0 | xargs -0 sed -i "s/{{%/{{ ?/g"
+          find . -name "*.md" -print0 | xargs -0 sed -i "s/%}}/? }}/g"
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
           source: ./
           destination: ./_site
-      - name: Restore original Django tags in Markdown files
-        run: |
-          find . -name "*.md" -print0 | xargs -0 sed -i "s/___Django_TAG___/{{%/g"
-          find . -name "*.md" -print0 | xargs -0 sed -i "s/___Django_TAG___/{{/g"
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
 
