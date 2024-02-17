@@ -1,7 +1,0 @@
-# Configuration for Jekyll
-jekyll_env:
-  use_liquid: false
-  
-liquid:
-  tag_start: '<%#'
-  tag_end: '#%>'
