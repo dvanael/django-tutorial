@@ -30,6 +30,9 @@ jobs:
         uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v4
+      - name: Comment out Liquid tags
+        run: |
+          find . -name "*.md" -print0 | xargs -0 sed -i 's/{%/{% comment %}{% endcomment %}/g'
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
