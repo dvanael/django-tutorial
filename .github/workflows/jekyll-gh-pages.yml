@@ -32,8 +32,8 @@ jobs:
         uses: actions/configure-pages@v4
       - name: Obscure Django tags in Markdown files
         run: |
-          find . -name "*.md" -print0 | xargs -0 sed -i "s/{{%/ ? /g"
-          find . -name "*.md" -print0 | xargs -0 sed -i "s/%}}/ ? /g"
+          find . -name "*.md" -print0 | xargs -0 sed -i "s/{{%/??/g"
+          find . -name "*.md" -print0 | xargs -0 sed -i "s/{{/??/g"
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
