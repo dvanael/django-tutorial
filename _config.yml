@@ -1,0 +1,4 @@
+# Configuration for Jekyll
+liquid:
+  tag_start: '<%#'
+  tag_end: '#%>'
