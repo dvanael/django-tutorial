@@ -41,3 +41,5 @@ Para utilizar o crispy, devemos carregar sua tags em nossos templates. Por exemp
 Note que usamos **|crispy** ao invés de **.as_p** na tag form do Django.
 
 Com isso, teremos formulários mais bonitos e compativéis com nosso Bootstrap.
+
+---

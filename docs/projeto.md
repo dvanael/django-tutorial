@@ -1,4 +1,4 @@
-# Criando um projeto
+# CRIANDO UM PROJETO
 Com o ambiente virtual ativado, instale o [Django](https://www.djangoproject.com). 
 ```bash
 pip install Django==5.0.1
@@ -10,8 +10,8 @@ django-admin startproject core .
 ```
 Isso irá criar um arquivo chamado **manage.py** e uma pasta chamada **core**, esta será nossa pasta de configuração.
 
-## Configurando o *settings.py*
-Dentro da pasta *core*, procure pelo arquivo **settings.py**, adicione `import os` no ínicio deste arquivo.
+## Configurando o settings.py
+Dentro da **pasta core**, procure pelo arquivo **settings.py**, adicione `import os` no ínicio deste arquivo.
 
 Próximo ao fim do arquivo, edite as seguintes linhas para definir o **idioma para português** e o **fuso horário para SP**.
 
@@ -40,7 +40,7 @@ O primeiro serve para criar um banco de dados básico, que cobriremos mais tarde
 
 Se tudo tiver dado certo, você deve ver a seguinte página:
 
-![django-rodando](img/teste-django.png)
+![django-rodando](/docs/img/teste-django.png)
 
 Para encerrar a execução do servidor, aperte **CTRL+C no terminal**.
 
@@ -50,7 +50,7 @@ Para continuar, vamos criar um "super usuário" (ou Administrador). No terminal,
 python manage.py createsuperuser
 ```
 Pelo próprio terminal, preencha login, e-mail e senha. Você pode testar o login em:
-- http://127.0.0.1:8000/admin
+- [localhost:8000/admin](http://127.0.0.1:8000/admin)
 
 Por esse painel admin é possível interagir diretamente com o banco de dados. A princípio, temos apenas *Grupos* e *Usuários*, criado pelo próprio Django quando o comando *migrate* foi utilizado. Veremos isso mais a frente, quando criarmos mais classes para o BD.
 
@@ -59,10 +59,10 @@ O próximo passo é criar o nosso primeiro app. Os app vão nos auxiliar a separ
 
 No terminal, digite:
 ```bash
-python manage.py startapp <nome_do_app>
-```	
+python manage.py createapp nome_do_app
+```
 
-**IMPORTANTE**: Para este projeto de exemplo, chamarei este primeiro app de **products**
+**IMPORTANTE**: Para este projeto de exemplo, chamarei este primeiro app de **products**.
 ```bash
 python manage.py startapp products
 ```
@@ -143,7 +143,7 @@ urlpatterns = [
     path('inicio/', index, name='index'),
 ]
 ```
-Basicamente estamos informando que o endereço (path) 'início/' vai ser "representado" pela função **index** (que é a nossa página index.html). 
+Basicamente estamos informando que o endereço (path) `início/` vai ser "representado" pela função **index** (que é a nossa página index.html). 
 
 Agora, vamos no outro arquivo do projeto chamado **urls.py**, na **pasta core**, e vamos editar para:
 
@@ -159,7 +159,7 @@ urlpatterns = [
 ```
 
 Aqui nós estamos dando um nome para este caminho do link (cadastros/) e incluindo após ele o que estiver no arquivo em **products/urls.py**. Sendo assim, agora o endereço da nossa página inicial seria:
--	http://127.0.0.1:8000/cadastros/inicio/
+-	[localhost:8000/cadastros/inicio](http://127.0.0.1:8000/cadastros/inicio/)
 
 Caso queira, você pode deixar o path vazio para que não seja necessário adicionar nada no caminho da página e, portanto, encurtando o link. Dessa forma, podemos **deletar cadastros/** e deixar apenas:
 ```python
@@ -167,10 +167,10 @@ Caso queira, você pode deixar o path vazio para que não seja necessário adici
 ```
 
 Para ter como link inicial:
-- http://127.0.0.1:8000/inicio/
+- [localhost:8000/inicio](http://127.0.0.1:8000/inicio/)
 
-Você também pode retirar o **'inicio/'** no urls.py do seu app. Para um link limpo:
-- http://127.0.0.1:8000/
+Você também pode retirar o `inicio/` no urls.py do seu app. Para um link limpo:
+- [localhost:8000](http://127.0.0.1:8000/)
 
 ## Fazendo migrações
 Faça as migrações necessárias para o projeto funcionar, visto que agora criamos um novo app. Sempre que modificarmos as configurações do nosso projeto, é importante fazermos novas migrações.
@@ -181,5 +181,4 @@ python manage.py migrate
 
 Agora, com tudo configurado, devemos conseguir rodar o servidor e abrir nossa página no [**localhost**](http://127.0.0.1:8000/).
 
-## Siga para o próximo documento -> [Arquivos Estáticos](/docs/arquivos-estaticos.md)
-## [Acessar Sumário](../README.md#sumário)
+---

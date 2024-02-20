@@ -32,7 +32,7 @@ Vamos criar na pasta template um arquivo base.html.
 </html>
 ```
 
-Com a página base criada e o BootStrap importado, nós podemos criar um layout inicial e utilizar mais um comando do Django para separar o nosso modelo em blocos:
+Com a página base criada e o BootStrap importado, nós podemos criar um layout inicial e utilizar mais uma tag do Django para separar o nosso modelo em blocos:
 
 Por exemplo:
 ```html
@@ -40,7 +40,7 @@ Por exemplo:
 	conteúdo do bloco
 {% endblock %}
 ```
-Então, podemos importar o base para outras páginas e usar o mesmo **comando block** do Django para editar nossos arquivos html. 
+Então, podemos importar o base para outras páginas e usar a mesma tag `block` do Django para editar nossos arquivos html. 
 
 **base.html**
 ```html
@@ -151,5 +151,4 @@ body .content{
 }
 ```
 
-## Siga para o próximo documento -> [Linkando Páginas](/docs/linkando-paginas.md)
-## [Acessar Sumário](../README.md#sumário)
+---

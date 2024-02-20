@@ -1,4 +1,4 @@
-# Criando um CRUD
+# CRIANDO UM CRUD
 **CRUD** é um acrônimo para **C**reate (criar), **R**ead (ler), **U**pdate (atualizar) e **D**elete (excluir). É um conjunto de operações básicas para gerenciar informações em um sistema. 
 
 - **Create (Criar):** Adiciona novos dados ao sistema.
@@ -93,9 +93,9 @@ Vamos criar o HTML **product-list.html** na nova pasta que criamos em templastes
 </div>
 {%endblock%}
 ```
-Aqui utilizamos um *for*, **{%  object in object_list %}**, para cada objeto na nossa lista de objetos, que será renderizada. Nesse *for*, usamos **{{ object.atributo }}** para cada atributo que criamos anteriormento no nosso **models.py**. 
+Aqui utilizamos um `for`, `{%  object in object_list %}`, para cada objeto na nossa lista de objetos, que será renderizada. Nesse `for`, usamos `{{ object.atributo }}` para cada atributo que criamos anteriormento no nosso **models.py**. 
 
-**{% empty %}**, é uma função que é ativada quando não há objetos na nossa lista, se vazia (*if empty*).
+**{% empty %}**, é uma função que é ativada quando não há objetos na nossa lista, se vazia (if empty).
 
 Também, usamos classes do Bootstrap para deixar nosso template mais bonito.
 
@@ -208,9 +208,9 @@ Esse form.html está fora da pasta products porque poderemos utlizá-lo para dif
 </div>
 {%endblock%}
 ```
-Aqui, usamos o **{{ title }}** para alterar o título de acordo com a função que está sendo executada no template. 
+Aqui, usamos o `{{ title }}` para alterar o título de acordo com a função que está sendo executada no template. 
 
-**{% csrf_token %}** é uma medida de segurança. O mais importante, o **{{ form.as_p }}** é nosso form definido na função create é renderizado como um parágrafo na nossa página.
+`{% csrf_token %}` é uma medida de segurança. O mais importante, o `{{ form.as_p }}` é nosso form definido na função create é renderizado como um parágrafo na nossa página.
 
 Agora nos resta, configurar nossa url. Também, adicionaremos um botão no topo da tabela, linkando nosso formulário.
 
@@ -249,7 +249,7 @@ def product_update(request, pk):
     context = {'form': form, 'title': 'Atualizar Produto'}
     return render(request, 'form.html', context)
 ```
-Por se tratar de uma atualização de um objeto, primerio buscamos o objeto em específico pela sua chave *prímária (*pk*)* juntamente da requisição, para assim, enviarmos seus dados para o formulário (*instance=product*). E seguimos o mesmo processo da função create.
+Por se tratar de uma atualização de um objeto, primerio buscamos o objeto em específico pela sua chave prímária (pk) juntamente da requisição, para assim, enviarmos seus dados para o formulário (instance=product). E seguimos o mesmo processo da função create.
 
 Adicionamos a url para essa função.
 
@@ -279,7 +279,7 @@ Para facilitar a busca pela chave primária do objeto, vamos adiconá-la no cant
   </tr>
 ...
 ```
-Perceba que ao usar a função url do Django, enviamos também o **object.pk** (chave primária do objeto), para que as informções desse objeto sejam recebidas pela função update e colocadas no formulário.
+Perceba que ao usar a função url do Django, enviamos também o `object.pk` (chave primária do objeto), para que as informções desse objeto sejam recebidas pela função update e colocadas no formulário.
 
 Agora, rode o servidor e tente atulizar algum objeto da sua tabela.
 
@@ -362,6 +362,4 @@ Faça o teste e tente deletar um objeto da sua tabela.
 
 Com isso, temos um CRUD completo em nosso frontend. Podemos fazer o mesmo para o outro model que criamos antes, para que não seja necessário acessar o admin do Django para adicionar novos objetos.
 
-## ! Documento Extra -> [Crispy Forms](doc)
-## Siga para o próximo documento -> [Usuário e Autenticação](/docs/autenticate.md)
-## [Acessar Sumário](../README.md#sumário)
+---
