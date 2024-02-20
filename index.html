@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
   
-  <link id="code-style" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/katorlys/prism-theme-github/themes/prism-theme-github-light.css">
+  <link id="code-style" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-vsc-dark-plus.css">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
@@ -22,14 +22,6 @@
   <style>
     /* Common styles */
     :root{
-      --bg-color: #fff;
-      --font-color: #333;
-      --primary-color: #f5f5f5;
-      --secondary-color: #eee;
-      --terciary-color: #dee1e6;
-      --contrast-color: #000dff;
-    }
-    .dark-mode{
       --bg-color: #292e38;
       --font-color: #ddd;
       --primary-color: #e9ebec;
@@ -206,10 +198,6 @@
         
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
-          </li class="nav-item">
-            <a class="nav-link nav-pog theme-btn d-flex align-items-center">
-              <i class="fa-solid fa-circle-half-stroke mx-0"></i><div class="d-lg-none ms-2">Tema</div></a>
-          </li>
           <li class="nav-item">
             <a class="nav-link nav-pog" target="_blank" href="https://github.com/dvanael/django-tutorial/">Github</a>
           </li>
@@ -336,23 +324,7 @@
         document.execCommand('copy');
         tempTextarea.remove();
       }
-  
-      // Dark mode toggle
-      const themeButton = $('.theme-btn'),
-        body = $('body'),
-        darkCode = 'https://cdn.jsdelivr.net/gh/katorlys/prism-theme-github/themes/prism-theme-github-dark.css',
-        lightCode = 'https://cdn.jsdelivr.net/gh/katorlys/prism-theme-github/themes/prism-theme-github-light.css',
-        codeStyle = $('#code-style')
-
-      themeButton.click(function() {
-        body.toggleClass('dark-mode');
-        if (codeStyle.attr('href') === darkCode) {
-          codeStyle.attr('href', lightCode);
-        } else {
-          codeStyle.attr('href', darkCode);
-        }
-        });
-      });
+    });
   </script>
 </body>
 </html>
