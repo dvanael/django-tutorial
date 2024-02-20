@@ -71,5 +71,4 @@ Adicione uma imagem na sua **pasta img** e no seu index.html adicione:
 </body>
 ```
 ---
-## Siga para o próximo documento -> [Criando um base.html](/docs/base.md)
-## [Acessar Sumário](../README.md#sumário)
+

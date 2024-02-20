@@ -53,7 +53,7 @@ urlpatterns = [
 ```
 
 ## Criando Links
-Voltando para nosso base, vamos adicionar links na nossa navbar. Iremos utilizar a **tag url** do Django para buscar a url que queremos. Dentro da **div da navbar** vamos adicionar no *espaço para links*.
+Voltando para nosso base, vamos adicionar links na nossa navbar. Iremos utilizar a **tag url** do Django para buscar a url que queremos. Dentro da **div da navbar** vamos adicionar no `espaço para links`.
 
 **base.html**
 ```html
@@ -77,5 +77,4 @@ Lembrando que **index** e **about** são os name que definimos no urls.py, eles 
 
 Também podemos modificar os outros links do projeto, para uma navegação mais dinâmica.
 
-## Siga para o próximo documento -> [Models](/docs/models.md)
-## [Acessar Sumário](../README.md#sumário)
+---

@@ -65,7 +65,7 @@ LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'login' #ou 'index'
 ```
-O que estamos fazendo aqui é informar que a página que será usada para o Login é a url **'login'**, ao efetuar um login o usuário será redirecionado (redirect) para a página **'início'** e ao efetuar um logout será redirecionado para a página 'login'. 
+O que estamos fazendo aqui é informar que a página que será usada para o Login é a url ``login``, ao efetuar um login o usuário será redirecionado (redirect) para a página ``início`` e ao efetuar um logout será redirecionado para a página `login`. 
 
 Agora, o login do usuário está pronto e funcional.
 
@@ -93,9 +93,9 @@ Vamos adicionar a opção de logout. Criaremos um pequeno form post para redirec
 ```
 Utilizamos um form post, porque a **LogoutView** do Django pede um requisição post para o logout.
 
-Usamos um **if request.user.is_authenticated** (se o usuário está autenticado), ele renderiza "Logout", se não é renderizado o link de Login.
+Usamos um `if request.user.is_authenticated` (se o usuário está autenticado), ele renderiza "Logout", se não é renderizado o link de Login.
 
-E também, usamos o **request.user** para mostrar o usuário que está logado.
+E também, usamos o `request.user` para mostrar o usuário que está logado.
 
 ## Autenticação
 No momento, o usuário consegue logar e deslogar no sistema, mas isso não implica em nada, pois mesmo deslogado o usuário consegue ver todas as páginas. Vamos mudar isso! 
@@ -114,7 +114,7 @@ def product_list(request):
     return render(request, 'products/product-list.html', {'products': products})
 
 ```
-**@login_required** faz que seja necessário o **login do usuário** para acessar a página.
+`@login_required` faz que seja necessário o **login do usuário** para acessar a página.
 
 Lembrando que é necessário realizar isso para todas as views necessárias. Agora, caso algum usuário não logado tente acessar essa página, ele será redirecionado à página de login.
 
@@ -135,7 +135,7 @@ def group_required(*group_name):
 @group_required('<seu_grupo>')
 def product_list(request):
 ```
-**@group_required('group_name')** irá verificar se o grupo do usuário que está acessando a página pertence ao grupo definido na função. 
+`@group_required('group_name')` irá verificar se o grupo do usuário que está acessando a página pertence ao grupo definido na função. 
 
 Com diferentes grupos de usuários, podemos dar acesso restrito para um certo grupo. Por exemplo, **apenas administradores** podem acessar **uma view em específico**. Isso sendo  essencial para privar certos dados de usuários comuns.
 
@@ -178,7 +178,7 @@ Caso queira, você pode adicionar uma mensagem para o usuário quando ele tentar
 </div>
 {% endblock content %}
 ```
-Usando **{% if request.user.is_authenticated %}**, o Django saberá se o usuário está logado e se possui acesso para aquela página. Então exibimos uma mensagem de erro e um link para o index.
+Usando `{% if request.user.is_authenticated %}`, o Django saberá se o usuário está logado e se possui acesso para aquela página. Então exibimos uma mensagem de erro e um link para o index.
 
 Dessa forma, utilizamos a mesma página para dois propósitos diferentes.
 
@@ -223,7 +223,7 @@ def product_create(request):
             return redirect('product-list')
             ...
 ```
-Aqui dizemos que usuário da requisição é igual ao atributo *user* do objeto enviado no  formulário (**form.instance.user = request.user**). Assim, automaticamente, quando um usuário criar um objeto, este será associado a ele.
+Aqui dizemos que usuário da requisição é igual ao atributo *user* do objeto enviado no  formulário (`form.instance.user = request.user`). Assim, automaticamente, quando um usuário criar um objeto, este será associado a ele.
 
 Agora precisamos filtrar os objetos na listagem, para que o usuário veja apenas os objetos que ele criou. Para isso, vamos modificar as **funções list**:
 
@@ -233,7 +233,7 @@ def product_list(request):
     products = Product.objects.filter(user = request.user)
     return render(request, 'products/product-list.html', {'products': products})
 ```
-Usamos **filter(user=request.user)** para que os objetos renderizados sejam aqueles associados ao usuário da requisição.
+Usamos filter(user=request.user) para que os objetos renderizados sejam aqueles associados ao usuário da requisição.
 
 Agora resta configurar as **funções update** e **delete** para que apenas o usuário que criou o objeto possa editar/excluí-lo. Para isso, vamos adicionar no get:
 
@@ -348,7 +348,7 @@ Agora resta colocar um link no menu do navbar para a página de registro e está
 
 **EXTRA** Para que não seja possível utilizar o mesmo e-mail para diferentes cadastros, podemos utilizar a função clean para esta validação extra.
 
-Após o **class Meta** do UserForm, vamos adicionar:
+Após o `class Meta` do UserForm, vamos adicionar:
 
 **forms.py**
 ```py
@@ -416,7 +416,6 @@ def product_update(request, pk):
 ```
 Aqui permitimos aos usuários admin editar qualquer objeto no sistema. É possível fazer o mesmo na nossa **delete view**.
 
----
 Com isso, damos menos acesso para usuários avulsos do sistema e definimos diferentes tipos de usuários.
 
-## [Acessar Sumário](../README.md#sumário)
+---
