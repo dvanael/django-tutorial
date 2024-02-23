@@ -2,7 +2,8 @@
 Começaremos agora a interagir com o banco de dados e, para isso, usaremos os **models** do Django. 
 
 Vamos abrir o arquivo **<nome_do_app>/models.py**. Nele vamos definir as classes que serão criadas no banco de dados. Para este projeto, vou criar duas classes. A primeira será **Produto** e a segunda será **Categoria**. Esta última será associada a uma Produto já existente. O arquivo **models.py** ficará assim:
-### models.py
+
+**models.py**
 ```py
 from django.db import models
 
@@ -27,11 +28,11 @@ Você criou duas classes em Django, **Category** e **Product**, usando o **model
 
 Usei tipos de dados como Char, Integer, e DecimalField para representar texto, inteiro e decimal. Há muitos outros tipos, veja [aqui](https://docs.djangoproject.com/en/4.2/ref/models/fields/).
 
-O **ForeignKey** no **Product** indica que ele está associado a uma **Category**. **on_delete=models.PROTECT** significa que uma Category não pode ser excluída se um Product estiver associado.
+O ``ForeignKey`` no **Product** indica que ele está associado a uma **Category**. ``on_delete=models.PROTECT`` significa que uma Category não pode ser excluída se um Product estiver associado.
 
-Outras opções comuns para **on_ delete** são CASCADE (excluiria também o Product), SET_ NULL (o campo Category do Product se tornaria nulo) e DO_NOTHING (o campo Category do Product permaneceria inalterado).
+Outras opções comuns para `on_delete` são ``CASCADE`` (excluiria também o Product), ``SET_ NULL`` (o campo Category do Product se tornaria nulo) e ``DO_NOTHING`` (o campo Category do Product permaneceria inalterado).
 
-O **def__str__** personaliza como nossas classes são impressas. Nesse caso, apenas os nomes são exibidos.
+O `def__str__` personaliza como nossas classes são impressas. Nesse caso, apenas os nomes são exibidos.
 
 Para adicionar essas classes ao banco, use os comandos no terminal:
 ```bash

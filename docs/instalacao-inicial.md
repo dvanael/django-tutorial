@@ -9,8 +9,10 @@ Instale o [VSCode](https://code.visualstudio.com/download). Algumas extensões �
 - Bootstrap
 - jQuery code snippets
 
-## Crie uma pasta para seu projeto
+Crie uma pasta para seu projeto.
+
 É nessa pasta onde iremos trabalhar com nosso projeto. Abra a pasta com o **VS Code**.
+
 ## Crie um ambiente virtual
 Abra um terminal na pasta do seu projeto e crie um ambiente virtual.
 
