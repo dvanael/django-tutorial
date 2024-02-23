@@ -361,7 +361,7 @@ from django.core.exceptions import ValidationError
             raise ValidationError(f"O email {e} já está em uso.")
         return e
 ```
-Podemos utilizar essa função (**clean_<nome_do_atributo>**) para realizar qualquer validação extra, além de retornar (raise) mensagens de erro para o usuário.
+Podemos utilizar essa função (`clean_<nome_do_atributo>`) para realizar qualquer validação extra, além de retornar (raise) mensagens de erro para o usuário.
 
 ## Grupos de Usuários
 Em alguns casos, onde há poucos grupos e/ou grupos previamente definidos, essa parte é feita manualmente pelo administrador pela página admin. Contudo, caso se deseje adicionar um usuário a um grupo automaticamente durante o registro, é possível.

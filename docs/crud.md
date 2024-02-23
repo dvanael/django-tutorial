@@ -29,8 +29,8 @@ def product_list(request):
     products = Product.objects.all()
     return render(request, 'products/product-list.html', {'object_list': products})
 ```
-A função **Product.objects.all()** busca todos os objetos do model que criamos anteriormente, 
-utilizamos **{'object_list': products}** no render para que nossa lista de objetos seja renderizada no template.
+A função `Product.objects.all()` busca todos os objetos do model que criamos anteriormente, 
+utilizamos `{'object_list': products}` no render para que nossa lista de objetos seja renderizada no template.
 
 Vamos criar o HTML **product-list.html** na nova pasta que criamos em templastes.
 **product-list.html**
@@ -95,7 +95,7 @@ Vamos criar o HTML **product-list.html** na nova pasta que criamos em templastes
 ```
 Aqui utilizamos um `for`, `{%  object in object_list %}`, para cada objeto na nossa lista de objetos, que será renderizada. Nesse `for`, usamos `{{ object.atributo }}` para cada atributo que criamos anteriormento no nosso **models.py**. 
 
-**{% empty %}**, é uma função que é ativada quando não há objetos na nossa lista, se vazia (if empty).
+`{% empty %}`, é uma função que é ativada quando não há objetos na nossa lista, se vazia (if empty).
 
 Também, usamos classes do Bootstrap para deixar nosso template mais bonito.
 

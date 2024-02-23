@@ -36,7 +36,6 @@
       font-family: Poppins, sans-serif;
       color: var(--font-color);
       background-color: var(--bg-color);
-      line-height: 1.6;
       display: flex;
       flex-direction: column;
       height: 100vh;  
@@ -45,10 +44,8 @@
     a {
       color: var(--contrast-color);
     }
-    .markdown-content{
-      padding-right: 10rem;
-    }
     #markdownContent {
+      line-height: 2rem;
      & h1, h2, h3, h4, h5, h6 {
       font-weight: bold;
       margin-top: .7em;
@@ -72,6 +69,7 @@
       border-width: .3rem;
     }
     & pre {
+      background-color: #1e1e1e;
       position: relative;
       padding: 1rem;
       text-shadow: none;
@@ -101,6 +99,9 @@
     }
     code[class*=language-], pre[class*=language-] {
       font-size: 14px;
+    }
+    code{
+      font-size: 1.1em;
     }
 
     /* Scrollbar styles */
@@ -160,6 +161,8 @@
         color: var(--font-color);
       }
     }
+    .summary-link{
+      color: var(--font-color);    }
     @media screen and (max-width: 992px) {
       .markdown-content{
         padding-inline: 1em;
@@ -203,7 +206,7 @@
           </li>
           <li class="nav-item">
             <a class="nav-link nav-pog" target="_blank" href="https://github.com/dvanael/">
-              Contanto</a>
+              Contato</a>
           </li>
         </ul>
       </div>  
@@ -215,7 +218,7 @@
     <div class="row mt-3">
       <div class="col-md-3 col-auto scroll-content ">
         <!-- Offcanvas Menu -->
-        <div class="offcanvas-md offcanvas-start offcanvas-color" tabindex="-1" id="offcanvasResponsive" aria-labelledby="offcanvasResponsiveLabel">
+        <div class="offcanvas-md offcanvas-start offcanvas-color" tabindex="-1" id="'window.scrollTo(0, 0);offcanvasResponsive" aria-labelledby="offcanvasResponsiveLabel">
           <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="offcanvasResponsiveLabel">Tutorial Django</h5>
             <button type="button" class="btn" data-bs-dismiss="offcanvas" data-bs-target="#offcanvasResponsive" aria-label="Close">
@@ -256,9 +259,15 @@
           </div>
         </div>
       </div>
-      <div class="col-md-9 col-11 scroll-content markdown-content ">
+      <div class="col-md-6 col-11 scroll-content markdown-content ">
         <!-- Content Area -->
           <div id="markdownContent"></div>
+        </div>
+      <div class="col-md-3 hidden ">
+        <div class="p-2 ps-4">
+          <h5>SUMÁRIO</h5>
+            <ul id="summary" class="sidebar list-group list-group-flush"></ul>
+        </div>
       </div>
     </div>
   </div>
@@ -282,7 +291,21 @@
             const converter = new showdown.Converter();
             const htmlContent = converter.makeHtml(markdownContent);
             $('#markdownContent').html(htmlContent);
-  
+            
+            // Clear any existing contents in the summary
+            $('#summary').html('');
+
+            // Find all heading elements (h1, h2, h3, h4) in the markdown content
+            $('#markdownContent').find('h1, h2, h3, h4').each(function(index) {
+              // Generate an ID if not already present
+              if (!$(this).attr('id')) {
+                $(this).attr('id', 'heading_' + index);
+              }
+
+              // Create a list item for the summary with a link to the heading
+              $('#summary').append('<a href="#' + $(this).attr('id') + '"><li class="side-link list-group-item summary-link">' + $(this).text() + '</li></a>');
+            });
+            
             Prism.highlightAll();
             // Add copy button to code blocks
             $('#markdownContent pre code').each(function() {
