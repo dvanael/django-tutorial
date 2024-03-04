@@ -66,7 +66,7 @@ Adicione uma imagem na sua **pasta img** e no seu index.html adicione:
     <h1>Bem vindos ao meu Projeto Django!</h1>
     
 <!-- Utilizamos a mesma tag static para as imagens. Por exemplo: -->
-    <img src="{% static 'img/django-logo.png' %}" alt="django-logo" style="width: 5%;">
+    <img src="{% static 'img/django-logo.png' %}" alt="django-logo" style="width: 5vh;">
 
 </body>
 ```

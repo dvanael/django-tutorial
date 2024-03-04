@@ -3,10 +3,9 @@ Primeiro instale o [Python](https://www.python.org/downloads/). Deve-se marcar a
 
 ## Instale o VS Code
 Instale o [VSCode](https://code.visualstudio.com/download). Algumas extensões úteis que podem ser baixadas no próprio VSCode:
-- Portuguese
 - Python
 - Django
-- Bootstrap
+- IntelliSense
 - jQuery code snippets
 
 Crie uma pasta para seu projeto.
@@ -33,7 +32,9 @@ Para **desativar** o ambiente virtual, digite:
 ``` bash
 deactivate
 ```
-**ATENÇÃO**: nunca reutilize seu venv, crie um em cada máquina que usar.
+>**ATENÇÃO**: nunca reutilize seu venv, crie um em cada máquina que usar.
+
+___
 ## Utilizando o requirements.txt
 Em nosso projeto, iremos fazer várias instalações ao decorrrer de sua programação. Essas instalações se tornaram dependências para rodar nosso projeto. O próprio Django sendo uma delas.
 

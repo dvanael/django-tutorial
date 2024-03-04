@@ -33,6 +33,7 @@ A função `Product.objects.all()` busca todos os objetos do model que criamos a
 utilizamos `{'object_list': products}` no render para que nossa lista de objetos seja renderizada no template.
 
 Vamos criar o HTML **product-list.html** na nova pasta que criamos em templastes.
+
 **product-list.html**
 ```html
 {%extends 'base.html'%}
@@ -161,7 +162,10 @@ def product_create(request):
             return redirect('product-list')
     else:
         form = ProductForm()
-    context = {'form': form, 'title': 'Cadastrar Produto'}
+    context = {
+        'form': form, 
+        'title': 'Cadastrar Produto'
+    }
     return render(request, 'form.html', context)
 ```
 Nessa função, se o método de requisição for POST, definimos nosso formulário e se ele for válido, salvamos usa informações. Usamos a **função redirect** para redirecionar o usuário para a listagem assim que o formulário for salvo.
@@ -212,6 +216,9 @@ Aqui, usamos o `{{ title }}` para alterar o título de acordo com a função que
 
 `{% csrf_token %}` é uma medida de segurança. O mais importante, o `{{ form.as_p }}` é nosso form definido na função create é renderizado como um parágrafo na nossa página.
 
+>**DICA**: Para deixar seus formulários mais bonitos, use o ``Crispy Forms``.
+
+---
 Agora nos resta, configurar nossa url. Também, adicionaremos um botão no topo da tabela, linkando nosso formulário.
 
 **urls.py**
@@ -246,7 +253,10 @@ def product_update(request, pk):
             return redirect('product-list')
     else:
         form = ProductForm(instance=product)
-    context = {'form': form, 'title': 'Atualizar Produto'}
+    context = {
+        'form': form, 
+        'title': 'Atualizar Produto'
+    }
     return render(request, 'form.html', context)
 ```
 Por se tratar de uma atualização de um objeto, primerio buscamos o objeto em específico pela sua chave prímária (pk) juntamente da requisição, para assim, enviarmos seus dados para o formulário (instance=product). E seguimos o mesmo processo da função create.
@@ -293,7 +303,10 @@ def product_delete(request, pk):
     if request.method == 'POST':
         product.delete()
         return redirect('product-list')
-    context = {'object': product, 'title': 'Excluir Produto'}
+    context = {
+        'object': product, 
+        'title': 'Excluir Produto'
+    }
     return render(request, 'form-delete.html', context)
 ```
 A diferença é que objeto é deletado invés de salvo. 

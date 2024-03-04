@@ -57,6 +57,22 @@ Vamos abrir o arquivo login.html e adicionar:
 </div>
 {% endblock content %}
 ```
+---
+>**DICA:** Estilize um pouco sua página de login! Veja como usar o ``Crispy Forms``.
+
+**styles.css**
+```css
+:root{
+    --dark-color: #346144;
+}
+...
+
+.login {
+    background-color: var(--dark-color);
+}
+```
+---
+
 Está quase pronto, mas se você acessar a página e logar, verá que dará erro, pois será encaminhado para um endereço inexistente. Esse endereço é um padrão do Django, mas temos como alterar isso. Para isso, vamos voltar no arquivo settings.py do projeto e vamos adicionar na última linha:
 
 **settings.py**
