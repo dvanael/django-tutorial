@@ -13,13 +13,19 @@
       </div>
   </div>
   <div class="col-md-12 mx-auto my-3 border rounded-4 shadow">
-    <div class="p-3">
-      <div class="text-end pb-3">
-        <a class="btn btn-success" href="{% url 'product-create'%}">Cadastrar Produto</a>
+    <div class="p-3">      
+      <div class="d-md-flex pb-3">
+        <form class="btn-group" action="?" method="GET" role="group">
+          <input class="rounded-start border border-3 ps-3" type="text" name="q" value="{{ query }}" placeholder="Pesquise...">
+          <button class="btn btn-success" type="submit">Buscar</button>
+          <a class="btn btn-secondary" href="?">Limpar</a>
+        </form>
+        
+        <a class="btn btn-success ms-auto" href="{% url 'product-create'%}">Cadastrar Produto</a>
       </div>
 
       <div class="table-responsive">
-      <table class="table table-striped">
+      <table class="table table-striped table-h">
         <thead class="table-secondary">
           <tr>
             <th></th>
@@ -32,19 +38,19 @@
           </tr>
         </thead>
         <tbody>
-          {%for el in products%}
+          {%for object in page.object_list%}
           <tr>
             <th>
-              <a href="{% url 'product-detail' el.pk %}">{{el.pk}}</a>
+              <a href="{% url 'product-detail' object.pk %}">{{object.pk}}</a>
             </th>
-            <th>{{el.name}}</th>
-            <th>{{el.description}}</th>
-            <th>{{el.price}}</th>
-            <th>{{el.stock_quantity}}</th>
-            <th>{{el.category.name}}</th>
+            <th>{{object.name}}</th>
+            <th>{{object.description}}</th>
+            <th>{{object.price}}</th>
+            <th>{{object.stock_quantity}}</th>
+            <th>{{object.category.name}}</th>
             <th>
-              <a class="btn btn-secondary" href="{% url 'product-update' el.pk %}">Editar</a>
-              <a class="btn btn-danger" href="{% url 'product-delete' el.pk %}">Excluir</a>
+              <a class="btn btn-secondary" href="{% url 'product-update' object.pk %}">Editar</a>
+              <a class="btn btn-danger" href="{% url 'product-delete' object.pk %}">Excluir</a>
             </th>
           </tr>
           {%empty%}
@@ -54,7 +60,35 @@
           {%endfor%}
         </tbody>
       </table>
-      </div>
+    </div>
+
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        {% if page.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?q={{ query|urlencode }}&page=1">Primeiro</a>
+          </li>
+          <li class="page-item">
+            <a  class="page-link" href="?q={{ query|urlencode }}&page={{ page.previous_page_number }}">Anterior</a>
+          </li>
+        {% endif %}
+
+        <li class="page-item">
+          <span class="page-link current text-dark">
+            Página {{ page.number }} de {{ page.paginator.num_pages }}
+          </span>
+        </li>
+        
+        {% if page.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?q={{ query}}&page={{ page.next_page_number }}">Proxímo</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="?q={{ query|urlencode }}&page={{ page.paginator.num_pages }}">Último</a>
+          </li>
+        {% endif %}
+      </ul>
+    </nav>
       
     </div>
   </div>
