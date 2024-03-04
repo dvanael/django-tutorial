@@ -64,7 +64,7 @@ Então, podemos importar o base para outras páginas e usar a mesma tag `block` 
 <!-- BLOCO DA NAVBAR -->
 {%block navbar%}
 <nav class="navbar navbar-expand-lg">
-    <div class="container-fluid">
+    <div class="container-fluid container">
     <span class="navbar-brand w-25 fs-4">
         <img src="{% static 'img/django-logo.png' %}" alt="django-logo" style="width: 10%;">
             PROJETO DJANGO
@@ -135,11 +135,10 @@ Por questões de estilo, vamos alterar nosso styles.css.
 body {
     display: flex;
     flex-direction: column;
-    height: 100vh;    
-}
-
-body .content{
-    flex: 1 1 0;
+    height: 100vh;
+    & .content {
+        flex: 1 1 0;
+    } 
 }
 
 .navbar {
