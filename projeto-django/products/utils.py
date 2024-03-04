@@ -9,15 +9,15 @@ def group_required(*group_name):
         return False
     return user_passes_test(in_group, login_url='/login/')
     
-# Se Admin get
-def get_admin(request, model):
+# Filtra todos para Admin, método GET
+def get_admin_objects(request, model):
     if request.user.groups.filter(name='admin').exists():
         return model.objects.all()
     else:
         return model.objects.filter(user=request.user)
         
-# Se Admin post
-def post_admin(request, model, pk):
+# Permite Admin editar/deletar qualquer objeto, método POST
+def post_admin_objects(request, model, pk):
     if request.user.groups.filter(name='admin').exists():
         return get_object_or_404(model, pk=pk)
     else:

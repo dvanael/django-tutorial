@@ -18,9 +18,9 @@
 {%block navbar%}
 <!-- BLOCO DA NAVBAR -->
 <nav class="navbar navbar-expand-lg">
-    <div class="container-fluid">
+    <div class="container-fluid container">
         <span class="navbar-brand w-25 fs-4">
-            <img src="{% static 'img/django-logo.png' %}" alt="django-logo" style="width: 10%;">
+            <img src="{% static 'img/django-logo.png' %}" alt="django-logo" style="width: 5vh;">
                 PROJETO DJANGO
         </span>
 
@@ -70,6 +70,7 @@
     <footer class="pt-2">
     <ul class="nav justify-content-center pb-1 mb-3">
         <li class="nav-item"><a href="{% url 'about' %}" class="nav-link px-2 text-body-secondary">Sobre</a></li>
+        <li class="nav-item"><a href="https://dvanael.github.io/django-tutorial/" class="nav-link px-2 text-body-secondary">Github.io</a></li>
     </ul>
     <p class="text-center text-body-secondary">© 2024 Projeto Django</p>
     </footer>

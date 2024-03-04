@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import Group 
 from django.contrib.auth import authenticate, login
+from django.core.paginator import Paginator
 
 from .utils import *
 from .models import Product
@@ -16,8 +17,22 @@ def about(request):
 
 @login_required
 def product_list(request):
-    products = get_admin(request, Product)
-    return render(request, 'products/product-list.html', {'products': products})
+    products = get_admin_objects(request, Product)
+
+    query = request.GET.get('q', '')
+    if query:
+        products = products.filter(name__icontains=query)
+
+    paginator = Paginator(products, 5)
+
+    page_number = request.GET.get('page')
+    page_objects = paginator.get_page(page_number)
+
+    context = {
+        'page': page_objects,
+        'query': query,
+    }
+    return render(request, 'products/product-list.html', context)
 
 @login_required
 def product_detail(request, pk):
@@ -34,12 +49,15 @@ def product_create(request):
             return redirect('product-list')
     else:
         form = ProductForm()
-    context = {'form': form, 'title': 'Cadastrar Produto'}
+    context = {
+        'form': form, 
+        'title': 'Cadastrar Produto'
+    }
     return render(request, 'form.html', context)
 
 @login_required
 def product_update(request, pk):
-    product = post_admin(request, Product, pk=pk)
+    product = post_admin_objects(request, Product, pk=pk)
     if request.method == 'POST':
         form = ProductForm(request.POST, instance=product)
         if form.is_valid():
@@ -47,16 +65,22 @@ def product_update(request, pk):
             return redirect('product-list')
     else:
         form = ProductForm(instance=product)
-    context = {'form': form, 'title': 'Atualizar Produto'}
+    context = {
+        'form': form, 
+        'title': 'Atualizar Produto'
+    }
     return render(request, 'form.html', context)
 
 @login_required
 def product_delete(request, pk):
-    product = post_admin(request, Product, pk=pk)
+    product = post_admin_objects(request, Product, pk=pk)
     if request.method == 'POST':
         product.delete()
         return redirect('product-list')
-    context = {'object': product, 'title': 'Excluir Produto'}
+    context = {
+        'object': product, 
+        'title': 'Excluir Produto'
+    }
     return render(request, 'form-delete.html', context)
     
 def register(request):
