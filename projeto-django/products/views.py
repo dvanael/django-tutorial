@@ -4,8 +4,10 @@ from django.contrib.auth import authenticate, login
 from django.core.paginator import Paginator
 
 from .utils import *
-from .models import Product
+from .models import Product, Category
 from .forms import ProductForm, UserForm
+
+from urllib.parse import unquote_plus
 
 # Create your views here.
 
@@ -18,8 +20,14 @@ def about(request):
 @login_required
 def product_list(request):
     products = get_admin_objects(request, Product)
+    categories = Category.objects.all()
 
-    query = request.GET.get('q', '')
+    category =  request.GET.get('category')
+    if category:
+        category = unquote_plus(category)
+        products = products.filter(category__name__icontains=category)
+
+    query = request.GET.get('q', '')    
     if query:
         products = products.filter(name__icontains=query)
 
@@ -31,6 +39,8 @@ def product_list(request):
     context = {
         'page': page_objects,
         'query': query,
+        'categories': categories,
+        'category': category,
     }
     return render(request, 'products/product-list.html', context)
 
