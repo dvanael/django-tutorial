@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
 </head>
 <body>
 
@@ -78,5 +79,10 @@
 {%endblock%}
 
     <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    
+<!-- BLOCO DE SCRIPT -->
+{% block script %}{% endblock script %}
 </body>
 </html>
