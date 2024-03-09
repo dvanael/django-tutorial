@@ -63,6 +63,7 @@ Vamos criar o HTML **product-list.html** na nova pasta que criamos em templastes
             <th>Preço (R$)</th>
             <th>Qnt. Estoque</th>
             <th>Categoria</th>
+            <th>Cadastrado em</th>
             <th>Opções</th>
           </tr>
         </thead>
@@ -75,13 +76,14 @@ Vamos criar o HTML **product-list.html** na nova pasta que criamos em templastes
             <th>{{ object.price }}</th>
             <th>{{ object.stock_quantity }}</th>
             <th>{{ object.category.name }}</th>
+            <th>{{ object.timestamp }}</th>
             <th>
           <!-- BOTÕES DE OPÇÕES -->
             </th>
           </tr>
           {%empty%}
           <tr>
-            <th colspan="7">Não há produtos registrados.</th>
+            <th colspan="8">Não há produtos registrados.</th>
           </tr>
           {%endfor%}
         </tbody>
@@ -100,6 +102,13 @@ Aqui utilizamos um `for`, `{%  object in object_list %}`, para cada objeto na no
 
 Também, usamos classes do Bootstrap para deixar nosso template mais bonito.
 
+> **EXTRA**: Por padrão o Django exibe datas por extenso, você pode mudar como datas são exibidas desta forma:
+>```html
+>  {{ object.timestamp|date:"SHORT_DATETIME_FORMAT" }}
+>```
+> Você pode ver outras formas de exibir datas na [documentação do Django](https://docs.djangoproject.com/pt-br/5.0/ref/templates/builtins/#date).
+
+___
 Agora vamos definir a url da nossa nova função list. Adicione em urls.py:
 
 **urls.py**

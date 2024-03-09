@@ -32,7 +32,7 @@ Nesse HTML, vamos extender nosso **base.html** e adicionar conteúdo.
 {%endblock%}
 ```
 ---
-Agora é necessário **criar outra view**, assim como fizemos com o index. Logo abaixo de **def index()**, vamos adicionar a nova função.
+Agora é necessário **criar outra view**, assim como fizemos com o index. Logo abaixo de ``def index()``, vamos adicionar a nova função.
 
 **views.py**
 ```py
@@ -53,7 +53,7 @@ urlpatterns = [
 ```
 
 ## Criando Links
-Voltando para nosso base, vamos adicionar links na nossa navbar. Iremos utilizar a **tag url** do Django para buscar a url que queremos. Dentro da **div da navbar** vamos adicionar no `espaço para links`.
+Voltando para nosso base, vamos adicionar links na nossa navbar. Iremos utilizar a **tag url** do Django para buscar a URL que queremos. Dentro da **div da navbar** vamos adicionar no `espaço para links`.
 
 **base.html**
 ```html
@@ -73,7 +73,7 @@ Voltando para nosso base, vamos adicionar links na nossa navbar. Iremos utilizar
     </div>
 ...
 ```
-Lembrando que **index** e **about** são os name que definimos no urls.py, eles são o que realmente importa quando chamamos um url. Portanto, os defina bem para não se confundir.
+Lembrando que ``index`` e ``about`` são os name que definimos no urls.py, eles são o que realmente importa quando chamamos um url. Portanto, os defina bem para não se confundir.
 
 Também podemos modificar os outros links do projeto, para uma navegação mais dinâmica.
 

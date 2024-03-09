@@ -21,6 +21,7 @@ Vamos criar na pasta template um arquivo base.html.
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Base</title>
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
 
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
@@ -54,6 +55,7 @@ Então, podemos importar o base para outras páginas e usar a mesma tag `block` 
     
 <!-- BLOCO DO TITULO -->
     {%block title%} <title>Base</title> {%endblock%}
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
     
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
