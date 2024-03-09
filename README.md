@@ -1,4 +1,6 @@
 # COMO CRIAR UM PROJETO DJANGO
+**Acesse o tutorial em [dvanael.github.io/django-tutorial/](https://dvanael.github.io/django-tutorial/)**
+
 Um repositório criado por um aluno com o propósito de ajudar outros alunos. Aqui você irá encontrar como iniciar um projeto Django de maneira simples e explicativa!
 
 ---
@@ -41,5 +43,10 @@ Um repositório criado por um aluno com o propósito de ajudar outros alunos. Aq
   - [Filtro por Usuário](docs/autenticate.md#filtrando-por-usuário)
   - [Cadastro de Usuário](docs/autenticate.md#cadastro-de-usuário)
   - [Grupos de Usuários](docs/autenticate.md#adicionando-usuários-em-grupos)
+- [**PAGINAÇÃO**](docs/pagination.md)
+  - [Criando a Paginação](docs/pagination.md#criando-a-paginação)
+  - [Campos de Busca](docs/pagination.md#campos-de-busca)
+  - [Filtros](docs/pagination.md#filtros)
+  - [Múltiplas Buscas](docs/pagination.md#múltiplas-buscas)
 - [**CRISPY FORMS**](docs/crispy-forms.md)
 ---
