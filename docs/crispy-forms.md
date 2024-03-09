@@ -5,7 +5,7 @@ Instale o **Crispy Forms** no terminal e o **Bootstrap Crispy** para o crispy se
 ```bash
 pip install django-crispy-forms crispy-bootstrap5
 ```
-No arquivo settings.py do core do seu projeto, adicione em INSTALLED_APPS:
+No arquivo settings.py do core do seu projeto, adicione em ``INSTALLED_APPS``:
 
 **settings.py**
 ```py

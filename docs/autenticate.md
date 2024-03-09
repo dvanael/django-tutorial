@@ -18,7 +18,7 @@ urlpatterns = [
 ]
 ```
 ---
-Agora vamos definir o template que será utilizado, por padrão o Django usa `registration/login.html`. Vamos criar a pasta **registration** e o **login.html** dentro da nossa pasta template.
+Agora vamos definir o template que será utilizado, por padrão o Django usa **registration/login.html**. Vamos criar a pasta **registration** e o **login.html** dentro da nossa pasta template.
 ```
 templates/
 ├── registration/
@@ -45,7 +45,7 @@ Vamos abrir o arquivo login.html e adicionar:
       <h3>LOGIN</h3>
       <form action="" method="post">
         {% csrf_token %}
-        {{ form|crispy }}
+        {{ form.as_p }}
         <div class="d-flex justify-content-center">
           <button class="btn btn-success w-100" type="submit">Entrar</button>
         </div>
@@ -58,7 +58,7 @@ Vamos abrir o arquivo login.html e adicionar:
 {% endblock content %}
 ```
 ---
->**DICA:** Estilize um pouco sua página de login! Veja como usar o ``Crispy Forms``.
+>**DICA:** Estilize um pouco sua página de login! Veja como usar o **Crispy Forms**.
 
 **styles.css**
 ```css
@@ -107,7 +107,7 @@ Vamos adicionar a opção de logout. Criaremos um pequeno form post para redirec
     {% endif %}
 </div>
 ```
-Utilizamos um form post, porque a **LogoutView** do Django pede um requisição post para o logout.
+Utilizamos um form post, porque a ``LogoutView`` do Django pede um requisição POST para o logout.
 
 Usamos um `if request.user.is_authenticated` (se o usuário está autenticado), ele renderiza "Logout", se não é renderizado o link de Login.
 
@@ -249,7 +249,7 @@ def product_list(request):
     products = Product.objects.filter(user = request.user)
     return render(request, 'products/product-list.html', {'products': products})
 ```
-Usamos filter(user=request.user) para que os objetos renderizados sejam aqueles associados ao usuário da requisição.
+Usamos filter(``user=request.user``) para que os objetos renderizados sejam aqueles associados ao usuário da requisição.
 
 Agora resta configurar as **funções update** e **delete** para que apenas o usuário que criou o objeto possa editar/excluí-lo. Para isso, vamos adicionar no get:
 
@@ -259,7 +259,7 @@ def product_delete(request, pk):
     product = get_object_or_404(Product, pk=pk, user=request.user)
     ...
 ```
-No **get or error**, indetificamos que o usuário do objeto deve ser igual o usuário da requisição (**user=request.user**).
+No ``get_object_or_404``, indetificamos que o usuário do objeto deve ser igual o usuário da requisição (``user=request.user``).
 
 ## Cadastro de Usuário
 O usuário já está funcional, com login, logout e relação entre ele e os seus objetos. Falta agora disponibilizar ao usuário uma tela de cadastros, já que no momento só é possível criar um novo usuário pela página do admin. 
@@ -291,7 +291,7 @@ def register(request):
 
 Criamos uma função para o cadastro do usuário, ela também autentica o usuário e o redireciona para o nosso index.
 
-Por enquanto, estamos usando o **UserCreationForm** padrão do Django. Vamos mudar isso e alterar esse formulário. Em **forms.py**, vamos adicionar:
+Por enquanto, estamos usando o ``UserCreationForm`` padrão do Django. Vamos mudar isso e alterar esse formulário. Em **forms.py**, vamos adicionar:
 
 **forms.py**
 ```py
@@ -324,7 +324,7 @@ if request.method == 'POST':
 ---
 Com todos a **função register** criada, nos resta criar um novo template e adicionar uma nova url.
 
-Criamos o `registration/register.html`.
+Criamos o **registration/register.html**.
 
 **register.html**
 ```html

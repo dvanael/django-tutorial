@@ -68,7 +68,7 @@ python manage.py startapp products
 ```
 O Django irá criar uma nova pasta no projeto com alguns arquivos.
 
-Agoras precisamos configurar nosso app no projeto. Vamos acessar nosso arquivo settings.py e nele vamos procurar por **INSTALLED_APPS**, adicionando na última linha:
+Agoras precisamos configurar nosso app no projeto. Vamos acessar nosso arquivo **settings.py** e nele vamos procurar por ``INSTALLED_APPS``, adicionando na última linha:
 
 **settings.py**
 ```py
@@ -107,7 +107,7 @@ Apenas como teste, vamos pôr no index.html algo bem simples:
 </html>
 ```
 
-Agora vamos configurar nossa **pasta de templates** no projeto. Para isso, vamos ao settings.py e procurar por **TEMPLATES**.
+Agora vamos configurar nossa **pasta de templates** no projeto. Para isso, vamos ao settings.py e procurar por ``TEMPLATES``.
 
 **settings.py**
 ```py
@@ -122,7 +122,7 @@ TEMPLATES = [
 O que estamos fazendo aqui é adicionando aos templates do projeto a pasta templates que criamos anteriormente. Dessa forma, todos os arquivos que colocarmos naquela pasta já serão identificados pelo projeto automaticamente.
 
 ## Criando uma view
-Com a página criada, vamos em **views.py**, vamos adicionar uma função **index** nesse arquivo. A função **render** importada no topo do arquivo é responsável por renderizar templates.
+Com a página criada, vamos em **views.py**, vamos adicionar uma função ``index`` nesse arquivo. A função ``render`` importada no topo do arquivo é responsável por renderizar templates.
 
 **views.py**
 ```py
@@ -143,7 +143,7 @@ urlpatterns = [
     path('inicio/', index, name='index'),
 ]
 ```
-Basicamente estamos informando que o endereço (path) `início/` vai ser "representado" pela função **index** (que é a nossa página index.html). 
+Basicamente estamos informando que o endereço (path) `início/` vai ser "representado" pela função ``index`` (que é a nossa página index.html). 
 
 Agora, vamos no outro arquivo do projeto chamado **urls.py**, na **pasta core**, e vamos editar para:
 

@@ -2,7 +2,7 @@
 Arquivos estáticos são arquivos que são enviados ao navegador exatamente como estão no HD do servidor, ou seja, sempre serão os mesmos, não sofrendo alterações. Exemplo disso seriam arquivos de imagem, CSS e JavaScripts.
 
 ## Criando a pasta static
-Vamos criar na pasta do nosso projeto uma pasta chamada **static** (padrão do Django) e mais uma pasta para cada tipo de arquivo, seguindo o seguinte modelo:
+Vamos criar na pasta do nosso projeto uma pasta chamada `static` (padrão do Django) e mais uma pasta para cada tipo de arquivo, seguindo o seguinte modelo:
 ```
 <pasta_do_projeto>/
 ├── core/
@@ -14,7 +14,7 @@ Vamos criar na pasta do nosso projeto uma pasta chamada **static** (padrão do D
 ```
 
 ## Configurando o static
-Agora precisamos indicar ao nosso projeto onde a pasta está localizada. Para isso, vamos abrir o arquivo settings.py e buscar por **STATIC_URL**, adicionando logo após:
+Agora precisamos indicar ao nosso projeto onde a pasta está localizada. Para isso, vamos abrir o arquivo settings.py e buscar por ``STATIC_URL``, adicionando logo após:
 
 **settings.py**
 ```py
@@ -56,7 +56,10 @@ Em index.html vamos adicionar duas linhas de código.
 
 Se atualizarmos nossa página inicial, devemos vê-la com uma cor de fundo diferente do branco padrão.
 
-O mesmo pode ser feito para arquivos **JavaScript** e imagens. Para utilizar imagens estáticas no seu projeto, é semelhante aos arquivos css e js.
+> **DICA**: Atulizar a página, algumas vezes não recarrega os arquivos estáticos. User **CTRL+F5** para recarregar todos os dados da página.
+
+___
+O mesmo pode ser feito para arquivos JavaScript e imagens. Para utilizar imagens estáticas no seu projeto, é semelhante aos arquivos css e js.
 
 Adicione uma imagem na sua **pasta img** e no seu index.html adicione:
 
@@ -70,5 +73,17 @@ Adicione uma imagem na sua **pasta img** e no seu index.html adicione:
 
 </body>
 ```
----
 
+## Favicon
+O static permite você alterar o favicon de seu site. Adicione um arquivo ``.ico`` sua pasta static 
+
+```
+└── static
+    ├── favicon.ico
+```
+
+Adicione essa linha no ``<head>`` do seu index.
+```html
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
+```
+---
