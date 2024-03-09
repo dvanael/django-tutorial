@@ -18,7 +18,7 @@
         
         <form class="filter d-md-flex" action="?" method="GET">
           <div class="btn-group" role="group">
-            <input class="rounded-start border border-3 ps-2" type="text" name="q" value="{{ query }}" placeholder="Pesquise...">
+            <input class="rounded-start border border-3 ps-2" type="text" name="n" value="{{name}}" placeholder="Pesquise...">
             <button class="btn btn-success" type="submit">Buscar</button>
             <a class="btn btn-secondary rounded-end" href="?">Limpar</a>
           </div>
@@ -27,8 +27,8 @@
             <select class="form-select rounded-start rounded-0 border border-3" id="category-select" name="category"> 
                 <option value="">Todas as categorias</option>
                 {% for category in categories %}
-                    <option value="{{category.name|urlencode}}"
-                      {% if request.GET.category == category.name|urlencode %}selected{% endif %}>
+                    <option value="{{category.name}}"
+                      {% if request.GET.category == category.name %}selected{% endif %}>
                         {{category.name}}
                       </option>
                 {% endfor %}
@@ -36,7 +36,7 @@
             <button class="btn btn-success" type="submit">Filtrar</button>
           </div>
           
-      </form>
+        </form>
     
         <a class="btn btn-success ms-auto" href="{% url 'product-create'%}">Cadastrar Produto</a>
       </div>
@@ -85,10 +85,10 @@
       <ul class="pagination justify-content-center">
         {% if page.has_previous %}
           <li class="page-item">
-            <a class="page-link" href="?q={{ query|urlencode }}&page=1">Primeiro</a>
+            <a class="page-link" href="?n={{name}}&category={{category}}&page=1">Primeiro</a>
           </li>
           <li class="page-item">
-            <a  class="page-link" href="?q={{ query|urlencode }}&page={{ page.previous_page_number }}">Anterior</a>
+            <a  class="page-link" href="?n={{name}}&category={{category}}&page={{ page.previous_page_number }}">Anterior</a>
           </li>
         {% endif %}
 
@@ -100,10 +100,10 @@
         
         {% if page.has_next %}
           <li class="page-item">
-            <a class="page-link" href="?q={{ query|urlencode }}&page={{ page.next_page_number }}">Proxímo</a>
+            <a class="page-link" href="?n={{name}}&category={{category}}&page={{ page.next_page_number }}">Proxímo</a>
           </li>
           <li class="page-item">
-            <a class="page-link" href="?q={{ query|urlencode }}&page={{ page.paginator.num_pages }}">Último</a>
+            <a class="page-link" href="?n={{name}}&category={{category}}&page={{ page.paginator.num_pages }}">Último</a>
           </li>
         {% endif %}
       </ul>

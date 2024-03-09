@@ -6,9 +6,7 @@ from django.core.paginator import Paginator
 from .utils import *
 from .models import Product, Category
 from .forms import ProductForm, UserForm
-
-from urllib.parse import unquote_plus
-
+from django.db.models import Q
 # Create your views here.
 
 def index(request):
@@ -22,14 +20,13 @@ def product_list(request):
     products = get_admin_objects(request, Product)
     categories = Category.objects.all()
 
-    category =  request.GET.get('category')
+    category =  request.GET.get('category','')
     if category:
-        category = unquote_plus(category)
         products = products.filter(category__name__icontains=category)
 
-    query = request.GET.get('q', '')    
-    if query:
-        products = products.filter(name__icontains=query)
+    name = request.GET.get('n', '')    
+    if name:
+        products = products.filter(Q(name__icontains=name) | Q(description__icontains=name))
 
     paginator = Paginator(products, 5)
 
@@ -38,7 +35,7 @@ def product_list(request):
 
     context = {
         'page': page_objects,
-        'query': query,
+        'name': name,
         'categories': categories,
         'category': category,
     }
