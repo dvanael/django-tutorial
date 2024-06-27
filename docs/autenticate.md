@@ -28,7 +28,7 @@ Vamos abrir o arquivo login.html e adicionar:
 
 **login.html**
 
-{% raw %}
+<!-- {% raw %} -->
 ```html
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
@@ -59,7 +59,7 @@ Vamos abrir o arquivo login.html e adicionar:
 </div>
 {% endblock content %}
 ```
-{% endraw %}
+<!-- {% endraw %} -->
 
 ---
 >**DICA:** Estilize um pouco sua página de login! Veja como usar o **Crispy Forms**.
@@ -93,7 +93,7 @@ Vamos adicionar a opção de logout. Criaremos um pequeno form post para redirec
 
 **base.html**
 
-{% raw %}
+<!-- {% raw %} -->
 ```html
 <ul class="navbar-nav me-auto">
   ...
@@ -113,7 +113,7 @@ Vamos adicionar a opção de logout. Criaremos um pequeno form post para redirec
     {% endif %}
 </div>
 ```
-{% endraw %}
+<!-- {% endraw %} -->
 
 Utilizamos um form post, porque a ``LogoutView`` do Django pede um requisição POST para o logout.
 
@@ -173,7 +173,7 @@ Caso queira, você pode adicionar uma mensagem para o usuário quando ele tentar
 
 **login.html**
 
-{% raw %}
+<!-- {% raw %} -->
 ```html
 ...
 {% block content %}
@@ -204,7 +204,7 @@ Caso queira, você pode adicionar uma mensagem para o usuário quando ele tentar
 </div>
 {% endblock content %}
 ```
-{% endraw %}
+<!-- {% endraw %} -->
 
 Usando `{% if request.user.is_authenticated %}`, o Django saberá se o usuário está logado e se possui acesso para aquela página. Então exibimos uma mensagem de erro e um link para o index.
 
@@ -340,7 +340,7 @@ Criamos o **registration/register.html**.
 
 **register.html**
 
-{% raw %}
+<!-- {% raw %} -->
 ```html
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
@@ -369,7 +369,7 @@ Criamos o **registration/register.html**.
 </div>
 {% endblock content %}
 ```
-{% endraw %}
+<!-- {% endraw %} -->
 
 ---
 **urls.py**

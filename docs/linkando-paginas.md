@@ -12,6 +12,7 @@ templates/
 Nesse HTML, vamos extender nosso **base.html** e adicionar conteúdo.
 
 **about.html**
+<!-- {% raw %} -->
 ```html
 {%extends 'base.html'%}
 
@@ -31,6 +32,7 @@ Nesse HTML, vamos extender nosso **base.html** e adicionar conteúdo.
 </div>
 {%endblock%}
 ```
+<!-- {% endraw %} -->
 ---
 Agora é necessário **criar outra view**, assim como fizemos com o index. Logo abaixo de ``def index()``, vamos adicionar a nova função.
 
@@ -56,6 +58,7 @@ urlpatterns = [
 Voltando para nosso base, vamos adicionar links na nossa navbar. Iremos utilizar a **tag url** do Django para buscar a URL que queremos. Dentro da **div da navbar** vamos adicionar no `espaço para links`.
 
 **base.html**
+<!-- {% raw %} -->
 ```html
 ...
 <!-- ESPAÇO PARA LINKS -->
@@ -72,6 +75,7 @@ Voltando para nosso base, vamos adicionar links na nossa navbar. Iremos utilizar
         </ul>
     </div>
 ...
+<!-- {% endraw %} -->
 ```
 Lembrando que ``index`` e ``about`` são os name que definimos no urls.py, eles são o que realmente importa quando chamamos um url. Portanto, os defina bem para não se confundir.
 

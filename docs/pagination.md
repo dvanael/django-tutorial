@@ -36,9 +36,11 @@ O ``page_objects`` pega a página atual, buscada pelo ``page_number``. Desta for
 Passamos esses dados como ``'page'`` no contexto do nosso template. Vamos atualizar nosso ``object_list`` no template para que a paginação começe a funcinar.
 
 **product-list.html**
+<!-- {% raw %} -->
 ```html
 {% for object in page.object_list %}
 ```
+<!-- {% endraw %} -->
 Aqui usamos ``page`` como nossa lista de objetos renderizados no template.
 
 Agora podemos acessar o link da listagem e veremos apenas 5, caso haja mais do que isso. Para acessar as páginas seguintes, nós podemos digitar na barra de navegação:
@@ -53,6 +55,7 @@ Crie novos objetos, se necessário, par testar a páginação.
 Porém, a navegação pela barra de pesquisa não é prática para o usuário. Vamos criar links para a páginação. Logo abaixo da nossa tabela, vamos adicionar:  
 
 **product-list.html**
+<!-- {% raw %} -->
 ```html
   <div class="table-responsive">
     ...
@@ -88,6 +91,7 @@ Porém, a navegação pela barra de pesquisa não é prática para o usuário. V
     </ul>
   </nav>
 ```
+<!-- {% endraw %} -->
 Estamos agora fornecendo links de paginação para navegar facilmente entre as páginas de resultados.
 
 ---
@@ -121,6 +125,7 @@ Quando o usuário envia o formulário de busca, o parâmetro `n` é enviado para
 No template `product-list.html`, temos um formulário com um campo de entrada de texto para o usuário inserir o termo de busca.
 
 **product-list.html**
+<!-- {% raw %} -->
 ```html
   <form class="filter d-md-flex" action="?" method="GET">
     <div class="btn-group" role="group">
@@ -130,6 +135,7 @@ No template `product-list.html`, temos um formulário com um campo de entrada de
     </div>
   </form>
 ```
+<!-- {% endraw %} -->
 Ao clicar no botão de busca, o texto é adicionado à URL como um parâmetro. Por exemplo, se buscarmos por "info", o link será `produtos/?n=info`.
 
 A busca funciona da seguinte forma:
@@ -141,9 +147,12 @@ O valor do campo de entrada `value` é preenchido com `{{name}}` do contexto, pe
 
 Porém, ao mudar de página, o termo de busca é perdido. Para resolver isso, precisamos incluir o termo de busca em cada link de paginação.
 
+<!-- {% raw %} -->
 ```html
 <a href="?page={{ ... }}&n={{name}}">
 ```
+<!-- {% endraw %} -->
+
 Aqui, estamos adicionando dois parâmetros para cada link: `page` representa o número da página e `name` representa o termo de busca. Esses parâmetros são separados por `&`. Dessa forma, o termo de busca será mantido durante a navegação por páginas.
 
 ___
@@ -178,6 +187,7 @@ Segue a mesma lógica da busca feita anteriormente.
 Agora temos os dados enviados ao template, vamos usá-los para criar nosso campo ``select``, logo abaixo do nosso campo de busca.
 
 **product-list.html**
+<!-- {% raw %} -->
 ```html
   <form class="filter d-md-flex" action="?" method="GET">
       ...
@@ -197,13 +207,16 @@ Agora temos os dados enviados ao template, vamos usá-los para criar nosso campo
     
 </form>
 ```
+<!-- {% endraw %} -->
 Aqui listamos as categorias no ``option`` do ``select``, para evitar erros conferimos o parâmetro ``category`` da URL e comparamos com o ``category.name`` para deixar a categoria selecionada.
 
 Lembrando que temos que adicionar esse parâmetro nos **links de páginação** também.
 
+<!-- {% raw %} -->
 ```html
 <a href="?page={{ ... }}&n={{name}}&category{{category}}">
 ```
+<!-- {% endraw %} -->
 ___
 
 ## Múltiplas Buscas

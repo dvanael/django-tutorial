@@ -91,6 +91,7 @@ E, dentro da pasta, um arquivo chamado **index.html**, que será a nossa página
 Apenas como teste, vamos pôr no index.html algo bem simples:
 
 **index.html**
+<!-- {% raw %} -->
 ```html
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -106,6 +107,7 @@ Apenas como teste, vamos pôr no index.html algo bem simples:
 </body>
 </html>
 ```
+<!-- {% endraw %} -->
 
 Agora vamos configurar nossa **pasta de templates** no projeto. Para isso, vamos ao settings.py e procurar por ``TEMPLATES``.
 
