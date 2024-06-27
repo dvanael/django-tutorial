@@ -1,3 +1,4 @@
+<!-- {% raw %} -->
 # USANDO O CRISPY FORMS
 O Crispy Forms edita automaticamente os nossos formulários, ao contrário do *forms.as_p* do Django. 
 
@@ -24,7 +25,6 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 Para utilizar o crispy, devemos carregar sua tags em nossos templates. Por exemplo:
 
 **form.html**
-<!-- {% raw %} -->
 ```html
 <!-- No topo da página -->
 {% load crispy_forms_tags %}
@@ -39,10 +39,10 @@ Para utilizar o crispy, devemos carregar sua tags em nossos templates. Por exemp
   ...
 </form>
 ```
-<!-- {% endraw %} -->
 
 Note que usamos ``|crispy`` ao invés de ``.as_p`` na tag form do Django.
 
 Com isso, teremos formulários mais bonitos e compativéis com nosso Bootstrap.
 
 ---
+<!-- {% endraw %} -->

@@ -1,3 +1,4 @@
+<!-- {% raw %} -->
 # CRIANDO UM BASE.HTML
 Agora vamos criar nosso **base.html**, já aproveitando para importar o BootStrap. O base.html será usado como base para as demais páginas HTML, servindo, por exemplo, para programar um menu de navegação que aparecerá em todas as páginas. 
 
@@ -11,7 +12,6 @@ Você também pode [baixar](https://getbootstrap.com/docs/5.3/getting-started/do
 Vamos criar na pasta template um arquivo base.html.
 
 **base.html**
-<!-- {% raw %} -->
 ```html
 {%load static%}
 
@@ -33,23 +33,19 @@ Vamos criar na pasta template um arquivo base.html.
 </body>
 </html>
 ```
-<!-- {% endraw %} -->
 
 Com a página base criada e o BootStrap importado, nós podemos criar um layout inicial e utilizar mais uma tag do Django para separar o nosso modelo em blocos:
 
 Por exemplo:
-<!-- {% raw %} -->
 ```html
 {% block nome_do_bloco %}
 	conteúdo do bloco
 {% endblock %}
 ```
-<!-- {% endraw %} -->
 
 Então, podemos importar o base para outras páginas e usar a mesma tag `block` do Django para editar nossos arquivos html. 
 
 **base.html**
-<!-- {% raw %} -->
 ```html
 {%load static%}
 
@@ -103,13 +99,11 @@ Então, podemos importar o base para outras páginas e usar a mesma tag `block` 
 </body>
 </html>
 ```
-<!-- {% endraw %} -->
 
 ---
 Agora podemos substiuir o conteúdo do nosso index.html.
 
 **index.html**
-<!-- {% raw %} -->
 ```html
 {%extends 'base.html'%}
 
@@ -133,7 +127,6 @@ Agora podemos substiuir o conteúdo do nosso index.html.
 </div>
 {%endblock%}
 ```
-<!-- {% endraw %} -->
 
 Assim podemos criar diferentes arquivos html sem repetir linhas de código, escrevendo apenas o necessário.
 
@@ -164,3 +157,4 @@ body {
 ```
 
 ---
+<!-- {% endraw %} -->

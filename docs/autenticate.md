@@ -1,3 +1,4 @@
+<!-- {% raw %} -->
 # AUTENTICAÇÃO 
 A autenticação do Django é importante porque protege as páginas da web, controla o acesso de usuários autorizados e mantém a segurança dos dados, garantindo que apenas usuários autenticados possam interagir com o sistema.
 
@@ -28,7 +29,6 @@ Vamos abrir o arquivo login.html e adicionar:
 
 **login.html**
 
-<!-- {% raw %} -->
 ```html
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
@@ -59,7 +59,6 @@ Vamos abrir o arquivo login.html e adicionar:
 </div>
 {% endblock content %}
 ```
-<!-- {% endraw %} -->
 
 ---
 >**DICA:** Estilize um pouco sua página de login! Veja como usar o **Crispy Forms**.
@@ -93,7 +92,6 @@ Vamos adicionar a opção de logout. Criaremos um pequeno form post para redirec
 
 **base.html**
 
-<!-- {% raw %} -->
 ```html
 <ul class="navbar-nav me-auto">
   ...
@@ -113,7 +111,6 @@ Vamos adicionar a opção de logout. Criaremos um pequeno form post para redirec
     {% endif %}
 </div>
 ```
-<!-- {% endraw %} -->
 
 Utilizamos um form post, porque a ``LogoutView`` do Django pede um requisição POST para o logout.
 
@@ -173,7 +170,6 @@ Caso queira, você pode adicionar uma mensagem para o usuário quando ele tentar
 
 **login.html**
 
-<!-- {% raw %} -->
 ```html
 ...
 {% block content %}
@@ -204,7 +200,6 @@ Caso queira, você pode adicionar uma mensagem para o usuário quando ele tentar
 </div>
 {% endblock content %}
 ```
-<!-- {% endraw %} -->
 
 Usando `{% if request.user.is_authenticated %}`, o Django saberá se o usuário está logado e se possui acesso para aquela página. Então exibimos uma mensagem de erro e um link para o index.
 
@@ -339,8 +334,6 @@ Com todos a **função register** criada, nos resta criar um novo template e adi
 Criamos o **registration/register.html**.
 
 **register.html**
-
-<!-- {% raw %} -->
 ```html
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
@@ -369,9 +362,9 @@ Criamos o **registration/register.html**.
 </div>
 {% endblock content %}
 ```
-<!-- {% endraw %} -->
 
 ---
+
 **urls.py**
 ```py
 path('cadastro/', register, name='register'),
@@ -451,3 +444,4 @@ Aqui permitimos aos usuários admin editar qualquer objeto no sistema. É possí
 Com isso, damos menos acesso para usuários avulsos do sistema e definimos diferentes tipos de usuários.
 
 ---
+<!-- {% endraw %} -->

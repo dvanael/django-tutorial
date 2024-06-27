@@ -1,3 +1,4 @@
+<!-- {% raw %} -->
 # ARQUIVOS ESTÁTICOS
 Arquivos estáticos são arquivos que são enviados ao navegador exatamente como estão no HD do servidor, ou seja, sempre serão os mesmos, não sofrendo alterações. Exemplo disso seriam arquivos de imagem, CSS e JavaScripts.
 
@@ -36,7 +37,6 @@ Em index.html vamos adicionar duas linhas de código.
 
 **index.html**
 
-<!-- {% raw %} -->
 ```html
 {% load static %} <!-- para carregar o static que configuramos  -->
 
@@ -55,7 +55,6 @@ Em index.html vamos adicionar duas linhas de código.
 </body>
 </html>
 ```
-<!-- {% endraw %} -->
 
 Se atualizarmos nossa página inicial, devemos vê-la com uma cor de fundo diferente do branco padrão.
 
@@ -67,18 +66,15 @@ O mesmo pode ser feito para arquivos JavaScript e imagens. Para utilizar imagens
 Adicione uma imagem na sua **pasta img** e no seu index.html adicione:
 
 **index.html**
-<!-- {% raw %} -->
-
 ```html
 <body>
     <h1>Bem vindos ao meu Projeto Django!</h1>
-    
+
 <!-- Utilizamos a mesma tag static para as imagens. Por exemplo: -->
     <img src="{% static 'img/django-logo.png' %}" alt="django-logo" style="width: 5vh;">
 
 </body>
 ```
-<!-- {% endraw %} -->
 
 ## Favicon
 O static permite você alterar o favicon de seu site. Adicione um arquivo ``.ico`` sua pasta static 
@@ -90,10 +86,9 @@ O static permite você alterar o favicon de seu site. Adicione um arquivo ``.ico
 
 Adicione essa linha no ``<head>`` do seu index.
 
-<!-- {% raw %} -->
 ```html
     <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
 ```
-<!-- {% endraw %} -->
 
 ---
+<!-- {% endraw %} -->

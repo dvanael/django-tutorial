@@ -1,3 +1,4 @@
+<!-- {% raw %} -->
 # CRIANDO UM CRUD
 **CRUD** é um acrônimo para **C**reate (criar), **R**ead (ler), **U**pdate (atualizar) e **D**elete (excluir). É um conjunto de operações básicas para gerenciar informações em um sistema. 
 
@@ -35,7 +36,6 @@ utilizamos `{'object_list': products}` no render para que nossa lista de objetos
 Vamos criar o HTML **product-list.html** na nova pasta que criamos em templastes.
 
 **product-list.html**
-<!-- {% raw %} -->
 ```html
 {%extends 'base.html'%}
 
@@ -97,7 +97,6 @@ Vamos criar o HTML **product-list.html** na nova pasta que criamos em templastes
 </div>
 {%endblock%}
 ```
-<!-- {% endraw %} -->
 
 Aqui utilizamos um `for`, `{%  object in object_list %}`, para cada objeto na nossa lista de objetos, que será renderizada. Nesse `for`, usamos `{{ object.atributo }}` para cada atributo que criamos anteriormento no nosso **models.py**. 
 
@@ -106,12 +105,10 @@ Aqui utilizamos um `for`, `{%  object in object_list %}`, para cada objeto na no
 Também, usamos classes do Bootstrap para deixar nosso template mais bonito.
 
 > **EXTRA**: Por padrão o Django exibe datas por extenso, você pode mudar como datas são exibidas desta forma:
-<!-- {% raw %} -->
 >```html
 >  {{ object.timestamp|date:"SHORT_DATETIME_FORMAT" }}
 >```
 > Você pode ver outras formas de exibir datas na [documentação do Django](https://docs.djangoproject.com/pt-br/5.0/ref/templates/builtins/#date).
-<!-- {% endraw %} -->
 
 ___
 Agora vamos definir a url da nossa nova função list. Adicione em urls.py:
@@ -129,14 +126,12 @@ urlpatterns = [
 Para acessar mais facilmente, adicione um novo link na sua navbar.
 
 **base.html**
-<!-- {% raw %} -->
 ```html
 ...
 <li class="nav-item">
     <a class="nav-link active" href="{% url 'product-list' %}">Produtos</a></li>
 ...
 ```
-<!-- {% endraw %} -->
 ---
 Coloque o servidor para rodar e teste a listagem. Se você criou objetos no [**admin do Django**](http://localhost:8000/admin/), agora você poderá vê-los em [localhost:8000/produtos/](http://localhost:8000/produtos/).
 
@@ -194,7 +189,6 @@ Criamos um contexto para nosso render para definir como usaremos o form e title 
 Esse form.html está fora da pasta products porque poderemos utlizá-lo para diferentes funções e models. Mas se preferir, pode criar um **product-form.html** na **pasta products** mas lembre defini-lo na função render.
 
 **form.html**
-<!-- {% raw %} -->
 ```html
 {%extends 'base.html'%}
 
@@ -229,7 +223,6 @@ Esse form.html está fora da pasta products porque poderemos utlizá-lo para dif
 </div>
 {%endblock%}
 ```
-<!-- {% endraw %} -->
 Aqui, usamos o `{{ title }}` para alterar o título de acordo com a função que está sendo executada no template. 
 
 `{% csrf_token %}` é uma medida de segurança. O mais importante, o `{{ form.as_p }}` é nosso form definido na função create é renderizado como um parágrafo na nossa página.
@@ -244,7 +237,6 @@ Agora nos resta, configurar nossa url. Também, adicionaremos um botão no topo 
 path('produtos/cadastrar/', product_create, name='product-create'),
 ```
 **product-list.html**
-<!-- {% raw %} -->
 ```html
 ...
 <!-- TOPO DA TABELA -->
@@ -253,7 +245,6 @@ path('produtos/cadastrar/', product_create, name='product-create'),
       </div>
 ...
 ```
-<!-- {% endraw %} -->
 Rode o servidor localhost e faça o teste, adicione novos objetos a tabela.
 ## Update
 Agora que podemos ler e adicionar novos objetos a tabela, iremos criar uma função update, para atualizar os objetos já existentes. 
@@ -292,7 +283,6 @@ Perceba que o url recebe um **valor int igual a pk**, esse valor é chave primá
 Para facilitar a busca pela chave primária do objeto, vamos adiconá-la no canto da tabela. Também, vamos adicionar um botão de opção, esse será para atualizar o objeto.
 
 **product-list.html**
-<!-- {% raw %} -->
 ```html
 ...
 {%for object in object_list%}
@@ -310,7 +300,6 @@ Para facilitar a busca pela chave primária do objeto, vamos adiconá-la no cant
   </tr>
 ...
 ```
-<!-- {% endraw %} -->
 Perceba que ao usar a função url do Django, enviamos também o `object.pk` (chave primária do objeto), para que as informções desse objeto sejam recebidas pela função update e colocadas no formulário.
 
 Agora, rode o servidor e tente atulizar algum objeto da sua tabela.
@@ -344,7 +333,6 @@ Vamos criar ele na mesma pasta que está o **form.html**, a pasta **templates**,
 Se preferir, pode criar um **product-delete.html** na pasta **products**.
 
 **form-delete.html**
-<!-- {% raw %} -->
 ```html
 {%extends 'base.html'%}
 
@@ -376,7 +364,6 @@ Se preferir, pode criar um **product-delete.html** na pasta **products**.
 </div>
 {%endblock%}
 ```
-<!-- {% endraw %} -->
 ---
 Por fim, definimos a sua url e adicionamos um novo botão de opção na tabela, o botão de deletar.
 
@@ -385,7 +372,6 @@ Por fim, definimos a sua url e adicionamos um novo botão de opção na tabela, 
   path('produtos/<int:pk>/deletar/', product_delete, name='product-delete'),
 ```
 **product-list.html**
-<!-- {% raw %} -->
 ```html
 ...
     <th>
@@ -396,9 +382,9 @@ Por fim, definimos a sua url e adicionamos um novo botão de opção na tabela, 
    </th>
 ...
 ```
-<!-- {% endraw %} -->
 Faça o teste e tente deletar um objeto da sua tabela.
 
 Com isso, temos um CRUD completo em nosso frontend. Podemos fazer o mesmo para o outro model que criamos antes, para que não seja necessário acessar o admin do Django para adicionar novos objetos.
 
 ---
+<!-- {% endraw %} -->
