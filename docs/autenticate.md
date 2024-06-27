@@ -27,6 +27,8 @@ templates/
 Vamos abrir o arquivo login.html e adicionar:
 
 **login.html**
+
+{% raw %}
 ```html
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
@@ -57,6 +59,8 @@ Vamos abrir o arquivo login.html e adicionar:
 </div>
 {% endblock content %}
 ```
+{% endraw %}
+
 ---
 >**DICA:** Estilize um pouco sua página de login! Veja como usar o **Crispy Forms**.
 
@@ -88,6 +92,8 @@ Agora, o login do usuário está pronto e funcional.
 Vamos adicionar a opção de logout. Criaremos um pequeno form post para redirecionar o usuário de volta para a página de login. Então, vamos adicionar esse form na nossa navbar.
 
 **base.html**
+
+{% raw %}
 ```html
 <ul class="navbar-nav me-auto">
   ...
@@ -107,6 +113,8 @@ Vamos adicionar a opção de logout. Criaremos um pequeno form post para redirec
     {% endif %}
 </div>
 ```
+{% endraw %}
+
 Utilizamos um form post, porque a ``LogoutView`` do Django pede um requisição POST para o logout.
 
 Usamos um `if request.user.is_authenticated` (se o usuário está autenticado), ele renderiza "Logout", se não é renderizado o link de Login.
@@ -164,6 +172,8 @@ Crie um grupo `admin` e um `user`.
 Caso queira, você pode adicionar uma mensagem para o usuário quando ele tentar visitar uma página que não possui acesso. Para isso, vamos trocar o que há no bloco conteúdo no arquivo login.html por:
 
 **login.html**
+
+{% raw %}
 ```html
 ...
 {% block content %}
@@ -194,6 +204,8 @@ Caso queira, você pode adicionar uma mensagem para o usuário quando ele tentar
 </div>
 {% endblock content %}
 ```
+{% endraw %}
+
 Usando `{% if request.user.is_authenticated %}`, o Django saberá se o usuário está logado e se possui acesso para aquela página. Então exibimos uma mensagem de erro e um link para o index.
 
 Dessa forma, utilizamos a mesma página para dois propósitos diferentes.
@@ -327,6 +339,8 @@ Com todos a **função register** criada, nos resta criar um novo template e adi
 Criamos o **registration/register.html**.
 
 **register.html**
+
+{% raw %}
 ```html
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
@@ -355,6 +369,8 @@ Criamos o **registration/register.html**.
 </div>
 {% endblock content %}
 ```
+{% endraw %}
+
 ---
 **urls.py**
 ```py

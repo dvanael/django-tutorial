@@ -35,7 +35,7 @@ body{
 Em index.html vamos adicionar duas linhas de código.
 
 **index.html**
-```html
+```python
 {% load static %} <!-- para carregar o static que configuramos  -->
 
 <!DOCTYPE html>
@@ -64,7 +64,7 @@ O mesmo pode ser feito para arquivos JavaScript e imagens. Para utilizar imagens
 Adicione uma imagem na sua **pasta img** e no seu index.html adicione:
 
 **index.html**
-```html
+```python
 <body>
     <h1>Bem vindos ao meu Projeto Django!</h1>
     
@@ -83,7 +83,7 @@ O static permite você alterar o favicon de seu site. Adicione um arquivo ``.ico
 ```
 
 Adicione essa linha no ``<head>`` do seu index.
-```html
+```python
     <link rel="shortcut icon" href="{% static 'favicon.ico' %}" type="image/x-icon">
 ```
 ---
