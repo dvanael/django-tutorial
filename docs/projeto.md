@@ -41,7 +41,7 @@ O primeiro serve para criar um banco de dados básico, que cobriremos mais tarde
 
 Se tudo tiver dado certo, você deve ver a seguinte página:
 
-![django-rodando](/docs/img/teste-django.png)
+![django-rodando](/static/img/teste-django.png)
 
 Para encerrar a execução do servidor, aperte **CTRL+C no terminal**.
 
