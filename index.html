@@ -7,197 +7,32 @@
   <title>Tutorial Django</title>
 
   <link rel="icon" sizes="16x16" href="https://img.icons8.com/external-zen-filled-royyan-wijaya/24/aaaaaa/external-alien-astronomy-zen-filled-royyan-wijaya.png" type="image/png">
-
-  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  
-  <!-- Prism -->
   <link id="code-style" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prism-themes@1.9.0/themes/prism-vsc-dark-plus.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.css" integrity="sha512-Dqf5696xtofgH089BgZJo2lSWTvev4GFo+gA2o4GullFY65rzQVQLQVlzLvYwTo0Bb2Gpb6IqwxYWtoMonfdhQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-  <!-- Custom Styles -->
-  <style>
-    /* Common styles */
-    :root{
-      --bg-color: #0f1014;
-      --font-color: #ddd;
-      --primary-color: #e9ebec;
-      --secondary-color: #1c2127;
-      --terciary-color: #101113;
-      --contrast-color: #45a1ed;
-    }
-    body {
-      font-family: Poppins, sans-serif;
-      color: var(--font-color);
-      background-color: var(--bg-color);
-      display: flex;
-      flex-direction: column;
-      height: 100vh;  
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-    a {
-      color: var(--contrast-color);
-    }
-    #markdownContent {
-      line-height: 2rem;
-     & h1, h2, h3, h4, h5, h6 {
-      font-weight: bold;
-      margin-top: .7em;
-      margin-bottom: 0.5em;
-    }
-
-    & p {
-      margin: 1em 0;
-    }
-
-    & ul, ol {
-      margin: 1em 0;
-      padding-left: 20px;
-    }
-
-    & ul li, ol li {
-      margin: 0.5em 0;
-    }
-    & hr{
-      border-color: var(--primary -color);
-      border-width: .3rem;
-    }
-    & pre {
-      background-color: #1e1e1e;
-      position: relative;
-      padding: 1.3rem;
-      text-shadow: none;
-      border-radius: 10px;
-      overflow-x: auto;
-      
-    }
-    
-    /* Button for copying code */
-    & .copy-to-clipboard-button {
-      width: 3rem;
-      height: 3rem;
-      background: transparent;
-      color: var(--font-color);
-      border: none;
-      padding: 5px 5px;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-
-    & .copy-to-clipboard-button:hover {
-      transition: all ease-in-out .3s;
-      background-color: var(--terciary-color);
-    }
-    }
-    code[class*=language-], pre[class*=language-] {
-      font-size: 14px;
-    }
-    code{
-      font-size: 1.1em;
-    }
-
-    /* Scrollbar styles */
-    ::-webkit-scrollbar {
-      width: 8px;
-      height: 6px;
-    }
-    
-    ::-webkit-scrollbar-track {
-      border-radius: 10px;
-    }
-
-    ::-webkit-scrollbar-thumb {
-      background: var(--secondary-color);
-      border-radius: 10px;
-    }
-    .scroll-content{
-      height: 87vh;
-      overflow-y: auto;
-    }
-    .sidebar{
-      width: 85%;
-      font-size: .8rem;
-      & a{
-        cursor: pointer;
-        color: var(--font-color);
-        text-decoration: none;
-        & :hover{
-          transition: all .3s ease-in-out;
-          background-color: var(--secondary-color);
-        }
-      }
-      & .side-link{
-        padding: .625rem 1.6rem;
-      }
-    }
-    .list-group-item{
-        background-color: transparent;
-        border-width: 0; 
-      }
-    .navbar{
-      color: var(--font-color);
-      background-color: var(--secondary-color);
-      & a:hover {
-        color: var(--contrast-color);
-        font-weight: bold;
-        transition: all .3s ease-in-out;
-      }
-      & .nav-pog{
-        color: var(--font-color);
-      }
-    }
-    .offcanvas-color{
-      background-color: var(--bg-color);
-      color: var(--font-color);
-      & .side-link{
-        color: var(--font-color);
-      }
-    }
-    .summary-link{
-      color: var(--font-color);    
-    }
-    @media screen and (max-width: 992px) {
-      .markdown-content{
-        padding-inline: 1em;
-      }
-      .sidebar{
-      width: 100%;
-      }
-    }
-    @media screen and (max-width: 767px){
-      .hidden{
-        display: none;
-      }
-      .markdown-content{
-      padding-inline: 0.8em;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="static/styles.css">
 </head>
 <body>
-  <!-- Navbar -->
+
   <nav class="navbar navbar-expand-lg p-3">
     <div class="container-fluid container">
       <button class="btn d-md-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasResponsive" aria-controls="offcanvasResponsive">
         <i class="fa fa-bars nav-pog" aria-hidden="true"></i>
       </button>
-      
+
       <span class="navbar-brand nav-pog">
         <i class="fas fa-laptop-code fa-xl me-2"></i>
         TUTORIAL DJANGO</span>
-        
+
         <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <i class="fa-solid fa-ellipsis py-2 nav-pog"></i>
         </button>
-        
+
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
           <li class="nav-item">
@@ -208,15 +43,14 @@
               Contato</a>
           </li>
         </ul>
-      </div>  
+      </div>
     </div>
   </nav>
 
-  <!-- Main Content -->
   <div class="container-fluid container">
     <div class="row mt-3">
       <div class="col-md-3 col-auto scroll-content ">
-        <!-- Offcanvas Menu -->
+
         <div class="offcanvas-md offcanvas-start offcanvas-color" tabindex="-1" id="offcanvasResponsive" aria-labelledby="offcanvasResponsiveLabel">
           <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="offcanvasResponsiveLabel">Tutorial Django</h5>
@@ -224,7 +58,7 @@
               <i class="fas fa-xmark fa-xl side-link"></i>
             </button>
           </div>
- 
+
           <div class="offcanvas-body d-flex">
             <ul class="sidebar list-group list-group-flush border-5 border-end border-dark">
               <a data-file="docs/instalacao-inicial.md" class="md-button" >
@@ -264,7 +98,6 @@
 
       <div class="col-md-6 col-11 scroll-content markdown-content" data-prismjs-copy="Copie" data-prismjs-copy-error="Erro! Ctr +C" data-prismjs-copy-success="✔️">
         <div id="top"></div>
-        <!-- Content Area -->
         <div id="markdownContent"></div>
       </div>
 
@@ -276,67 +109,13 @@
       </div>
     </div>
   </div>
-
-  <!-- Scripts -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
-  
-  <!-- Bootstrap Bundle JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-  
-  <!-- PRISM -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.js" integrity="sha512-st608h+ZqzliahyzEpETxzU0f7z7a9acN6AFvYmHvpFhmcFuKT8a22TT5TpKpjDa3pt3Wv7Z3SdQBCBdDPhyWA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js" integrity="sha512-/kVH1uXuObC0iYgxxCKY41JdWOkKOxorFVmip+YVifKsJ4Au/87EisD1wty7vxN2kAhnWh6Yc8o/dSAXj6Oz7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  
-  <script>
-    $(document).ready(function() {
-      // Function to convert Markdown to HTML
-      function convertMarkdownToHtml(file) {
-        $.ajax({
-          url: file,
-          success: function(markdownContent) {
-            const converter = new showdown.Converter();
-            const htmlContent = converter.makeHtml(markdownContent);
-            $('#markdownContent').html(htmlContent);
-            
-            // Clear any existing contents in the summary
-            $('#summary').html('');
-
-            // Find all heading elements (h1, h2, h3, h4) in the markdown content
-            $('#markdownContent').find('h1, h2, h3, h4').each(function(index) {
-              // Generate an ID if not already present
-              if (!$(this).attr('id')) {
-                $(this).attr('id', 'heading_' + index);
-              }
-
-              // Create a list item for the summary with a link to the heading
-              $('#summary').append('<a href="#' + $(this).attr('id') + '"><li class="side-link list-group-item summary-link">' + $(this).text() + '</li></a>');
-            });
-            
-            Prism.highlightAll();
-          },
-          error: function(error) {
-            console.error('Error loading Markdown file:', error);
-          }
-        });
-      }
-  
-      // Event listener for Markdown buttons
-      $('.md-button').click(function() {
-        const file = $(this).data('file');
-        convertMarkdownToHtml(file);
-        $('#offcanvasResponsive').offcanvas('hide'); // Close the offcanvas
-        // Scroll user to the top
-        $('.markdown-content').animate({
-            scrollTop: $('#top').offset().top
-        }, 'slow'); 
-      });
-  
-      // Initialize with the default Markdown file
-      convertMarkdownToHtml($('.md-button').first().data('file'));
-    });
-  </script>
+  <script src="static/scripts.js"></script>
 </body>
 </html>
